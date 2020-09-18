@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val categoryRepository: CategoryRepository by inject()
-//    private val apiService: ApiService by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
