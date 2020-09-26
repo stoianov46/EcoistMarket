@@ -1,8 +1,8 @@
 package com.ecoist.market.domain.api
 
 import androidx.annotation.Keep
-import com.ecoist.market.data.response.Category
-import com.ecoist.market.data.response.Product
+import com.ecoist.market.data.response.CategoryResponse
+import com.ecoist.market.data.response.ProductResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,17 +13,17 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("tss/category?a=list")
-    suspend fun getAllCategories(): List<Category>
+    suspend fun getAllCategories(): List<CategoryResponse>
 
     @GET("tss/category?a=list_where&col=idParent")
-    suspend fun getChildCategories(@Query("idParent") idParent: Int): List<Category>
+    suspend fun getChildCategories(@Query("idParent") idParent: Int): List<CategoryResponse>
 
     @GET("tss/salemod?a=list")
-    suspend fun getAllProducts(): List<Product>
+    suspend fun getAllProducts(): List<ProductResponse>
 
     @GET("tss/salemod?a=list_where&col=idCategory")
-    suspend fun getProductByIdOfCategory(@Query("idCategory") idCategory: Int): List<Product>
+    suspend fun getProductByIdOfCategory(@Query("idCategory") idCategory: Int): List<ProductResponse>
 
     @GET("tss/salemod?a=list_where&col=id")
-    suspend fun getProductById(@Query("id") id: Int): Product
+    suspend fun getProductById(@Query("id") id: Int): ProductResponse
 }

@@ -1,6 +1,7 @@
 package com.ecoist.market.domain.repository
 
-import com.ecoist.market.data.response.Product
+import com.ecoist.market.data.mapper.ProductMapper
+import com.ecoist.market.data.model.Product
 import com.ecoist.market.domain.api.ApiService
 
 /**
@@ -9,13 +10,17 @@ import com.ecoist.market.domain.api.ApiService
 class ProductRepository(private val apiService: ApiService) {
 
     suspend fun getAllProducts(): List<Product> {
-        return apiService.getAllProducts()
+        val products = apiService.getAllProducts()
+        return ProductMapper.map(products)
     }
 
     suspend fun getProductById(id: Int): Product {
-        return apiService.getProductById(id)
+        val productResponse = apiService.getProductById(id)
+        return ProductMapper.mapSingle(productResponse)
     }
+
     suspend fun getProductByIdOfCategory(id: Int): List<Product> {
-        return apiService.getProductByIdOfCategory(id)
+        val products = apiService.getProductByIdOfCategory(id)
+        return ProductMapper.map(products)
     }
 }

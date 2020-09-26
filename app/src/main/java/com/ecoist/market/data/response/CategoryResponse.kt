@@ -10,9 +10,9 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 @Keep
-data class Category(
-    @SerializedName("id") val id: Int,
-    @SerializedName("idParent") val idParent: Int,
+data class CategoryResponse(
+    @SerializedName("id") val id: Long,
+    @SerializedName("idParent") val idParent: Long,
     @SerializedName("name") val name: String,
     @SerializedName("alias") val alias: String,
     @SerializedName("compared") val compared: Int,
