@@ -23,8 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private val categoryRepository: CategoryRepository by inject()
     private val productRepository: ProductRepository by inject()
-//    private val apiService: ApiService by inject()
-
+  
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
