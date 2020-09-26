@@ -1,4 +1,4 @@
-package com.ecoist.market.domain
+package com.ecoist.market.domain.api
 
 import androidx.annotation.Keep
 import com.ecoist.market.data.response.Category
@@ -23,7 +23,6 @@ interface ApiService {
 
     @GET("tss/salemod?a=list_where&col=idCategory")
     suspend fun getProductByIdOfCategory(@Query("idCategory") idCategory: Int): List<Product>
-
 
     @GET("tss/salemod?a=list_where&col=id")
     suspend fun getProductById(@Query("id") id: Int): Product

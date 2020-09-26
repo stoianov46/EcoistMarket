@@ -1,7 +1,7 @@
-package com.ecoist.market.domain
+package com.ecoist.market.domain.repository
 
-import com.ecoist.market.data.response.Category
 import com.ecoist.market.data.response.Product
+import com.ecoist.market.domain.api.ApiService
 
 /**
  * Created by Kirill Stoianov on 18/09/2020.
