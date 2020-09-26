@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.ecoist.market.R
+import com.ecoist.market.domain.analytics.AnalyticsLogger
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private val backPressCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             if (supportFragmentManager.backStackEntryCount > 1) {
-                supportFragmentManager.popBackStackImmediate()
+                clearStackFragment()
             } else {
                 finish()
             }
@@ -39,5 +41,24 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.add(fragmentContainerViewId, fragment)
         fragmentTransaction.addToBackStack(stackName)
         fragmentTransaction.commitAllowingStateLoss()
+    }
+
+    private fun clearStackFragment() {
+        try {
+            supportFragmentManager.popBackStackImmediate()
+        } catch (throwable: Throwable) {
+            AnalyticsLogger.logException(throwable)
+        }
+    }
+
+    private fun clearStackFragment(stackName: String) {
+        try {
+            supportFragmentManager.popBackStackImmediate(
+                stackName,
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
+            )
+        } catch (throwable: Throwable) {
+            AnalyticsLogger.logException(throwable)
+        }
     }
 }
