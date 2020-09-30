@@ -21,11 +21,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class CategoryListFragment : Fragment(), CategoryListAdapter.Listener {
 
     private val viewModel: CategoryListViewModel by viewModel()
+    private val categoryListObserver = Observer<List<Category>>(::handleCategoryList)
 
     private var recyclerView: RecyclerView? = null
     private val adapter = CategoryListAdapter(this)
-
-    private val categoryListObserver = Observer<List<Category>>(::handleCategoryList)
 
     override fun onCreateView(
         inflater: LayoutInflater,
