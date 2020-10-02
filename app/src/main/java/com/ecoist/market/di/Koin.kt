@@ -2,7 +2,8 @@ package com.ecoist.market.di
 
 import androidx.annotation.Keep
 import com.ecoist.market.AppDelegate
-import com.ecoist.market.di.category.categoryListModule
+import com.ecoist.market.di.category.categoryCommonListModule
+import com.ecoist.market.di.category.categoryMainListModule
 import com.ecoist.market.di.network.networkModule
 import com.ecoist.market.di.repository.repositoryModule
 import org.koin.android.ext.koin.androidContext
@@ -29,7 +30,8 @@ object Koin {
         val modules = listOf(
             networkModule(),
             repositoryModule(),
-            categoryListModule()
+            categoryMainListModule(),
+            categoryCommonListModule()
         )
 
         startKoin {

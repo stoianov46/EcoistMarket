@@ -8,7 +8,7 @@ import org.koin.dsl.module
 /**
  * Created by Kirill Stoianov on 27/09/2020.
  */
-fun categoryListModule() = module {
+fun categoryMainListModule() = module {
     viewModel {
         CategoryMainListViewModel(
             application = androidApplication(),
