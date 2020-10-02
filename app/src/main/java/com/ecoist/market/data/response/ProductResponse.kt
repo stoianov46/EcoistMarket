@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Keep
-data class Product(
+data class ProductResponse(
     @SerializedName("mpn") val mpn: String,
     @SerializedName("GalleryName") val galleryName: String,
     @SerializedName("rating") val rating: Int,
@@ -21,8 +21,8 @@ data class Product(
     @SerializedName("odiscount") val odiscount: String,
     @SerializedName("mark") val mark: Int,
     @SerializedName("idCategory") val idCategory: Int,
-    @SerializedName("id") val id: Int,
-    @SerializedName("priceAutogen") val priceAutogen: Int,
+    @SerializedName("id") val id: Long,
+    @SerializedName("priceAutogen") val priceAutogen: Double,
     @SerializedName("coment") val coment: String,
     @SerializedName("price") val price: String,
     @SerializedName("alias") val alias: String,
