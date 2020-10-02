@@ -1,4 +1,4 @@
-package com.ecoist.market.presentation.category
+package com.ecoist.market.presentation.category.common
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -6,9 +6,9 @@ import androidx.navigation.fragment.navArgs
 /**
  * Created by Kirill Stoianov on 26/09/2020.
  */
-class CategoryFragment : Fragment() {
+class CategoryCommonListFragment : Fragment() {
 
-    private val args: CategoryFragmentArgs by navArgs()
+    private val args: CategoryCommonListFragmentArgs by navArgs()
 
     // TODO ADD IMPLEMENTATION WITH USING CategoryListAdapter
 }

@@ -1,4 +1,4 @@
-package com.ecoist.market.presentation.category
+package com.ecoist.market.presentation.category.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,14 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ecoist.market.R
 import com.ecoist.market.data.model.Category
 import com.ecoist.market.presentation.category.adapter.CategoryListAdapter
+import com.ecoist.market.presentation.category.common.CategoryCommonListFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Created by Kirill Stoianov on 26/09/2020.
  */
-class CategoryListFragment : Fragment(), CategoryListAdapter.Listener {
+class CategoryMainListFragment : Fragment(), CategoryListAdapter.Listener {
 
-    private val viewModel: CategoryListViewModel by viewModel()
+    private val viewModel: CategoryMainListViewModel by viewModel()
     private val categoryListObserver = Observer<List<Category>>(::handleCategoryList)
 
     private var recyclerView: RecyclerView? = null
@@ -31,7 +32,7 @@ class CategoryListFragment : Fragment(), CategoryListAdapter.Listener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_category_list, container, false)
+        return inflater.inflate(R.layout.fragment_category_main_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,10 +51,11 @@ class CategoryListFragment : Fragment(), CategoryListAdapter.Listener {
         val builder: NavOptions.Builder = NavOptions.Builder()
         // builder.setEnterAnim(R.anim.slide_in_right).setExitAnim(R.anim.slide_out_left).build();
 
-        val action = CategoryListFragmentDirections.actionCategoryListFragmentToCategoryFragment(
-            category = category,
-            categoryId = category.id
-        )
+        val action =
+            CategoryMainListFragmentDirections.actionCategoryListFragmentToCategoryCommonListFragment(
+                category = category,
+                categoryId = category.id
+            )
         findNavController().navigate(action, builder.build())
     }
 

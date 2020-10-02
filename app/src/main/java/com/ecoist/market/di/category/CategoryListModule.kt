@@ -1,6 +1,6 @@
 package com.ecoist.market.di.category
 
-import com.ecoist.market.presentation.category.CategoryListViewModel
+import com.ecoist.market.presentation.category.main.CategoryMainListViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -10,7 +10,7 @@ import org.koin.dsl.module
  */
 fun categoryListModule() = module {
     viewModel {
-        CategoryListViewModel(
+        CategoryMainListViewModel(
             application = androidApplication(),
             repository = get()
         )

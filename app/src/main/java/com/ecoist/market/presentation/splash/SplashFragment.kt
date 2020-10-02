@@ -30,7 +30,7 @@ class SplashFragment : Fragment() {
         oneTimeCoroutineScope(Dispatchers.IO) {
             launch {
                 delay(1000)
-                findNavController().navigate(R.id.categoryListFragment)
+                findNavController().navigate(R.id.categoryMainListFragment)
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.ecoist.market.presentation.category
+package com.ecoist.market.presentation.category.main
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 /**
  * Created by Kirill Stoianov on 27/09/2020.
  */
-class CategoryListViewModel(
+class CategoryMainListViewModel(
     application: Application,
     private val repository: CategoryRepository
 ) : BaseViewModel(application) {
