@@ -2,7 +2,7 @@ package com.ecoist.market.di.network
 
 import android.content.Context
 import com.ecoist.market.BuildConfig
-import com.ecoist.market.domain.ApiService
+import com.ecoist.market.domain.api.ApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
