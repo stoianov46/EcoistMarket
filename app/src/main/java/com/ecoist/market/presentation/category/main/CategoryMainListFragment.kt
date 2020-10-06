@@ -63,4 +63,24 @@ class CategoryMainListFragment : Fragment(), CategoryListAdapter.Listener {
         if (categoryList == null) return
         adapter.submitList(categoryList)
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

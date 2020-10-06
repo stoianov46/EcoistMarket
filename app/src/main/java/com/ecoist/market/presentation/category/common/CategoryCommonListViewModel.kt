@@ -1,16 +1,30 @@
 package com.ecoist.market.presentation.category.common
 
 import android.app.Application
+import android.icu.util.ULocale
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.ecoist.market.data.model.Category
 import com.ecoist.market.domain.repository.CategoryRepository
 import com.ecoist.market.presentation.base.BaseViewModel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-/**
- * Created by Kirill Stoianov on 10/2/20.
- */
+
 class CategoryCommonListViewModel(
     application: Application,
-    repository: CategoryRepository
+    private val repository: CategoryRepository
 ) : BaseViewModel(application) {
-
-    // TODO ADD IMPLEMENTATION HERE
+    val categoryListLiveData: LiveData<List<Category>>
+        get() = categoryListEmitter
+    private val categoryListEmitter = MutableLiveData<List<Category>>()
+     fun init(){
+         viewModelScope.launch (io){
+             val commonLevelCategory= repository.getAllCategories()
+             withContext(main){
+                 categoryListEmitter.value=commonLevelCategory
+             }
+         }
+     }
 }
