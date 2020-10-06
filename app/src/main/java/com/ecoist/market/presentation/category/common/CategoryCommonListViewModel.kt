@@ -1,7 +1,6 @@
 package com.ecoist.market.presentation.category.common
 
 import android.app.Application
-import android.icu.util.ULocale
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -16,15 +15,18 @@ class CategoryCommonListViewModel(
     application: Application,
     private val repository: CategoryRepository
 ) : BaseViewModel(application) {
+
     val categoryListLiveData: LiveData<List<Category>>
         get() = categoryListEmitter
+
     private val categoryListEmitter = MutableLiveData<List<Category>>()
-     fun init(){
-         viewModelScope.launch (io){
-             val commonLevelCategory= repository.getAllCategories()
-             withContext(main){
-                 categoryListEmitter.value=commonLevelCategory
-             }
-         }
-     }
+
+    fun init(parentCategoryId: Long) {
+        viewModelScope.launch(io) {
+            val commonLevelCategory = repository.getChildCategoriesOf(parentCategoryId)
+            withContext(main) {
+                categoryListEmitter.value = commonLevelCategory
+            }
+        }
+    }
 }

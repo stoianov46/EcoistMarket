@@ -16,7 +16,7 @@ interface ApiService {
     suspend fun getAllCategories(): List<CategoryResponse>
 
     @GET("tss/category?a=list_where&col=idParent")
-    suspend fun getChildCategories(@Query("idParent") idParent: Int): List<CategoryResponse>
+    suspend fun getChildCategories(@Query("idParent") idParent: Long): List<CategoryResponse>
 
     @GET("tss/salemod?a=list")
     suspend fun getAllProducts(): List<ProductResponse>
