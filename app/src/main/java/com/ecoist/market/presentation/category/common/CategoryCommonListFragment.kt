@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,13 +44,13 @@ class CategoryCommonListFragment : Fragment(), CategoryListAdapter.Listener {
     }
 
     override fun onClick(category: Category) {
-//        val builder: NavOptions.Builder = NavOptions.Builder()
-//        val action =
-//            CategoryCommonListFragmentDirections.actionCategoryFragmentToProductFragment2(
-//                product = product,
-//                productId = product.id
-//            )
-//        findNavController().navigate(action, builder.build())
+        val builder: NavOptions.Builder = NavOptions.Builder()
+        val action =
+            CategoryCommonListFragmentDirections.actionCategoryFragmentToProductFragment2(
+                product = ,
+                productId = product.id
+            )
+        findNavController().navigate(action, builder.build())
 
         TODO("Open ProductListFragment")
     }

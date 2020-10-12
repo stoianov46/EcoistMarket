@@ -3,9 +3,6 @@ package com.ecoist.market.data.model
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-/**
- * Created by Kirill Stoianov on 26/09/2020.
- */
 @Parcelize
 data class Product(
     val mpn: String,
