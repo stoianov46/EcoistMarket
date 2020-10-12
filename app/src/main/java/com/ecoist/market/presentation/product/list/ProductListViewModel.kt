@@ -1,4 +1,4 @@
-package com.ecoist.market.presentation.category.product
+package com.ecoist.market.presentation.product.list
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -14,15 +14,17 @@ class ProductListViewModel(
     application: Application,
     private val repository: ProductRepository
 ) : BaseViewModel(application) {
+
     val productListLiveData: LiveData<List<Product>>
         get() = productListEmitter
+
     private val productListEmitter = MutableLiveData<List<Product>>()
 
     fun init(commonCategoryId: Long) {
         viewModelScope.launch(io) {
-            val productList=repository.getProductByIdOfCategory(commonCategoryId)
-            withContext(main){
-                productListEmitter.value=productList
+            val productList = repository.getProductByIdOfCategory(commonCategoryId)
+            withContext(main) {
+                productListEmitter.value = productList
             }
         }
     }

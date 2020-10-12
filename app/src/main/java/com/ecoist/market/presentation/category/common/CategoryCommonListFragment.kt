@@ -36,9 +36,9 @@ class CategoryCommonListFragment : Fragment(), CategoryListAdapter.Listener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView?.adapter = adapter;
+        recyclerView?.adapter = adapter
         recyclerView?.layoutManager =
-            LinearLayoutManager(view.context, RecyclerView.VERTICAL, false);
+            LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
         viewModel.categoryListLiveData.observe(viewLifecycleOwner, categoryListObserver)
         viewModel.init(args.categoryId)
     }
@@ -46,13 +46,10 @@ class CategoryCommonListFragment : Fragment(), CategoryListAdapter.Listener {
     override fun onClick(category: Category) {
         val builder: NavOptions.Builder = NavOptions.Builder()
         val action =
-            CategoryCommonListFragmentDirections.actionCategoryFragmentToProductFragment2(
-                product = ,
-                productId = product.id
+            CategoryCommonListFragmentDirections.actionCategoryCommonListFragmentToProductListFragment(
+                category = category
             )
         findNavController().navigate(action, builder.build())
-
-        TODO("Open ProductListFragment")
     }
 
     private fun handleCategoryList(categoryList: List<Category>?) {

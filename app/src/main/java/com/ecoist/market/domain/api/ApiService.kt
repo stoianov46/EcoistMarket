@@ -24,6 +24,6 @@ interface ApiService {
     @GET("tss/salemod?a=list_where&col=idCategory")
     suspend fun getProductByIdOfCategory(@Query("idCategory") idCategory: Long): List<ProductResponse>
 
-    @GET("tss/salemod?a=list_where&col=id")
-    suspend fun getProductById(@Query("id") id: Int): ProductResponse
+    @GET("tss/salemod?a=load&col=id")
+    suspend fun getProductById(@Query("id") id: Long): ProductResponse
 }

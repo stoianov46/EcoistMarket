@@ -1,4 +1,4 @@
-package com.ecoist.market.presentation.category.adapter
+package com.ecoist.market.presentation.product.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ecoist.market.R
-import com.ecoist.market.data.model.Category
 import com.ecoist.market.data.model.Product
 
 class ProductListAdapter(
     private var listener: Listener
 ) : ListAdapter<Product, ProductListAdapter.ProductVh>(diff) {
+
     companion object {
         val diff = object : DiffUtil.ItemCallback<Product>() {
             override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
@@ -28,10 +28,11 @@ class ProductListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductVh {
         val productView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_product_list, parent, false)
-        return ProductVh(productView)
+            .inflate(R.layout.product_list_item, parent, false)
+        return ProductVh(
+            productView
+        )
     }
-
 
     override fun onBindViewHolder(holder: ProductVh, position: Int) {
         val item = getItem(position)
