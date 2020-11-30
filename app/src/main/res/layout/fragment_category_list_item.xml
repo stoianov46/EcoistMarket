@@ -12,12 +12,12 @@
         android:id="@+id/tvCategoryName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginHorizontal="32dp"
-        android:textSize="32sp"
-        tools:text="Category name"/>
+        tools:text="Category name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
