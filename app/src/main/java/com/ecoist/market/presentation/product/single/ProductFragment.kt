@@ -22,6 +22,9 @@ class ProductFragment : Fragment() {
     private val productObserver = Observer(::handleProduct)
 
     private var tvProductName: TextView? = null
+    private var tvProductDescription: TextView? = null
+    private var tvProductDescriptionFull: TextView? = null
+    private var tvProductPrice: TextView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +37,9 @@ class ProductFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvProductName = view.findViewById(R.id.tvProductName)
+        tvProductDescriptionFull=view.findViewById(R.id.tvProductTextFull)
+        tvProductDescription=view.findViewById(R.id.tvText)
+        tvProductPrice=view.findViewById(R.id.price)
         viewModel.productLiveData.observe(viewLifecycleOwner, productObserver)
         viewModel.init(args.product.id)
     }
@@ -41,5 +47,8 @@ class ProductFragment : Fragment() {
     private fun handleProduct(product: Product?) {
         if (product == null) return
         tvProductName?.text = product.name
+        tvProductPrice?.text=product.price
+        tvProductDescriptionFull?.text=product.descriptionFull
+        tvProductDescription?.text=product.description
     }
 }

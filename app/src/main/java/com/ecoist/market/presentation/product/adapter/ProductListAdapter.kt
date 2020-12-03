@@ -46,13 +46,13 @@ class ProductListAdapter(
 
     class ProductVh(view: View) : RecyclerView.ViewHolder(view) {
         private var tvProductName: TextView? = view.findViewById(R.id.tvProductName)
-        private var tvProductTextView: TextView? = view.findViewById(R.id.tvProductText)
-        private val myImageView : ImageView? = itemView.findViewById(R.id.tvImageView)
-        var url="https://ecoist.com.ua/salemod_img/akkumuljatornaja-batareja-alva-6fm100agm-12v-100ah.htm"
+       private var tvProductTextView: TextView? = view.findViewById(R.id.priceItems)
+      private val myImageView : ImageView? = itemView.findViewById(R.id.tvImageView)
+
         fun bind(product: Product, listener: Listener) {
             tvProductName?.text = product.name
-            tvProductTextView?.text = product.descriptionFull
-            myImageView?.context?.let { Glide.with(it).load(url).into(myImageView) }
+            tvProductTextView?.text = product.price
+          //  myImageView?.context?.let { Glide.with(it).load(url).into(myImageView) }
             itemView.setOnClickListener { listener.onClick(product) }
         }
     }
