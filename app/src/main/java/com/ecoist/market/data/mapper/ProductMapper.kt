@@ -1,5 +1,6 @@
 package com.ecoist.market.data.mapper
 
+import android.util.Log
 import com.ecoist.market.data.model.Product
 import com.ecoist.market.data.response.ProductResponse
 
@@ -17,7 +18,8 @@ object ProductMapper {
         /*
         * TODO: example https://ecoist.com.ua/gallery/solnechnoe-zarjadnoe-kvazar-kv-10-pm/image_12306_120_120.jpg
         * */
-        val imageUrl: String? = null  // TODO("Implement image url")
+        val imageUrl: String? = "https://ecoist.com.ua/gallery/"+productResponse.galleryName+"/image_"+productResponse.idImage+"_120_120.jpg"
+        Log.d("my_tag","Url: $imageUrl")
 
         return Product(
             mpn = productResponse.mpn,

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 import com.ecoist.market.R
 import com.ecoist.market.data.model.Product
@@ -45,12 +46,12 @@ class ProductListAdapter(
     class ProductVh(view: View) : RecyclerView.ViewHolder(view) {
         private var tvProductName: TextView? = view.findViewById(R.id.tvProductName)
        private var tvProductTextView: TextView? = view.findViewById(R.id.priceItems)
-      private val myImageView : ImageView? = itemView.findViewById(R.id.tvImageViewOfProduct)
+      private val myImageView : ImageView? = itemView.findViewById(R.id.tvImageOfProduct)
 
         fun bind(product: Product, listener: Listener) {
             tvProductName?.text = product.name
             tvProductTextView?.text = product.price
-          //  myImageView?.context?.let { Glide.with(it).load(url).into(myImageView) }
+          // myImageView?.context?.let { Glide.with(it).load(url).into(myImageView) }
             itemView.setOnClickListener { listener.onClick(product) }
         }
     }
