@@ -1,6 +1,5 @@
 package com.ecoist.market.presentation.product.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 
 import com.ecoist.market.R
 import com.ecoist.market.data.model.Product
@@ -47,7 +45,7 @@ class ProductListAdapter(
     class ProductVh(view: View) : RecyclerView.ViewHolder(view) {
         private var tvProductName: TextView? = view.findViewById(R.id.tvProductName)
        private var tvProductTextView: TextView? = view.findViewById(R.id.priceItems)
-      private val myImageView : ImageView? = itemView.findViewById(R.id.tvImageView)
+      private val myImageView : ImageView? = itemView.findViewById(R.id.tvImageViewOfProduct)
 
         fun bind(product: Product, listener: Listener) {
             tvProductName?.text = product.name

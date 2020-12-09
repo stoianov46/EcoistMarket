@@ -1,10 +1,13 @@
 package com.ecoist.market.presentation.product.single
 
 import android.os.Bundle
+import android.text.Html
+import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
@@ -25,6 +28,7 @@ class ProductFragment : Fragment() {
     private var tvProductDescription: TextView? = null
     private var tvProductDescriptionFull: TextView? = null
     private var tvProductPrice: TextView? = null
+    private var tvComment:TextView?=null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,9 +41,10 @@ class ProductFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvProductName = view.findViewById(R.id.tvProductName)
-        tvProductDescriptionFull=view.findViewById(R.id.tvProductTextFull)
-        tvProductDescription=view.findViewById(R.id.tvText)
-        tvProductPrice=view.findViewById(R.id.price)
+        tvProductDescriptionFull = view.findViewById(R.id.tvProductTextFull)
+        tvProductDescription = view.findViewById(R.id.tvText)
+        tvProductPrice = view.findViewById(R.id.price)
+        tvComment=view.findViewById(R.id.tvComent)
         viewModel.productLiveData.observe(viewLifecycleOwner, productObserver)
         viewModel.init(args.product.id)
     }
@@ -47,8 +52,13 @@ class ProductFragment : Fragment() {
     private fun handleProduct(product: Product?) {
         if (product == null) return
         tvProductName?.text = product.name
-        tvProductPrice?.text=product.price
-        tvProductDescriptionFull?.text=product.descriptionFull
-        tvProductDescription?.text=product.description
+        tvProductPrice?.text = product.price
+        tvProductDescriptionFull?.text = product.descriptionFull?.fromHtml()?.trim()
+        tvProductDescription?.text = product.description?.fromHtml()?.trim()
+        tvComment?.text=product.coment?.fromHtml()?.trim()
+    }
+
+    private fun String.fromHtml(): Spanned {
+        return HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }
