@@ -9,7 +9,12 @@ import com.ecoist.market.data.response.CategoryResponse
 object CategoryMapper {
 
     fun map(categories: List<CategoryResponse>): List<Category> {
-        return categories.map { categoryResponse -> mapSingle(categoryResponse) }
+        return categories
+            .filter {
+                // Exclude non-active categories
+                it.isPublic == 1
+            }
+            .map { categoryResponse -> mapSingle(categoryResponse) }
     }
 
     private fun mapSingle(categoryResponse: CategoryResponse): Category {

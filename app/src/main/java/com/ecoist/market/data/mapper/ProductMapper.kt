@@ -1,6 +1,5 @@
 package com.ecoist.market.data.mapper
 
-import android.util.Log
 import com.ecoist.market.data.model.Product
 import com.ecoist.market.data.response.ProductResponse
 
@@ -10,7 +9,12 @@ import com.ecoist.market.data.response.ProductResponse
 object ProductMapper {
 
     fun map(products: List<ProductResponse>): List<Product> {
-        return products.map { productResponse -> mapSingle(productResponse) }
+        return products
+            .filter {
+                // Exclude non-active products
+                it.isPublic == 1
+            }
+            .map { productResponse -> mapSingle(productResponse) }
     }
 
     fun mapSingle(productResponse: ProductResponse): Product {
@@ -23,7 +27,7 @@ object ProductMapper {
             append( productResponse.idImage)
             append("_120_120.jpg")
         }
-Log.d("MYLOG","url:$imageUrl")
+
         return Product(
             mpn = productResponse.mpn,
             galleryName = productResponse.galleryName,
