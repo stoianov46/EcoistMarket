@@ -12,7 +12,13 @@ object ProductMapper {
         return products.map { productResponse -> mapSingle(productResponse) }
     }
 
-     fun mapSingle(productResponse: ProductResponse): Product {
+    fun mapSingle(productResponse: ProductResponse): Product {
+
+        /*
+        * TODO: example https://ecoist.com.ua/gallery/solnechnoe-zarjadnoe-kvazar-kv-10-pm/image_12306_120_120.jpg
+        * */
+        val imageUrl: String? = null  // TODO("Implement image url")
+
         return Product(
             mpn = productResponse.mpn,
             galleryName = productResponse.galleryName,
@@ -34,7 +40,8 @@ object ProductMapper {
             isPublic = productResponse.isPublic,
             idImage = productResponse.idImage,
             deleted = productResponse.deleted,
-            description = productResponse.description
+            description = productResponse.description,
+            imageUrl = imageUrl
         )
     }
 }
