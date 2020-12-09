@@ -15,11 +15,14 @@ object ProductMapper {
 
     fun mapSingle(productResponse: ProductResponse): Product {
 
-        /*
-        * TODO: example https://ecoist.com.ua/gallery/solnechnoe-zarjadnoe-kvazar-kv-10-pm/image_12306_120_120.jpg
-        * */
-        val imageUrl: String? = "https://ecoist.com.ua/gallery/"+productResponse.galleryName+"/image_"+productResponse.idImage+"_120_120.jpg"
-        Log.d("my_tag","Url: $imageUrl")
+        //val imageUrl: String? = "https://ecoist.com.ua/gallery/"+productResponse.galleryName+"/image_"+productResponse.idImage+"_120_120.jpg"
+        val imageUrl: String? = buildString{
+            append( "https://ecoist.com.ua/gallery/")
+            append(productResponse.galleryName)
+            append("/image_")
+            append( productResponse.idImage)
+            append("_120_120.jpg")
+        }
 
         return Product(
             mpn = productResponse.mpn,

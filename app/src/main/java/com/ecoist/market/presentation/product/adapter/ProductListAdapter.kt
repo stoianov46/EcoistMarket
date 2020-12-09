@@ -15,7 +15,7 @@ import com.ecoist.market.data.model.Product
 
 class ProductListAdapter(
     private var listener: Listener
-) : ListAdapter<Product, ProductListAdapter.ProductVh>(diff) {
+) : ListAdapter<Product, ProductListAdapter.ProductVH>(diff) {
 
     companion object {
         val diff = object : DiffUtil.ItemCallback<Product>() {
@@ -29,29 +29,26 @@ class ProductListAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductVh {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductVH {
         val productView = LayoutInflater.from(parent.context)
             .inflate(R.layout.product_list_item, parent, false)
-        return ProductVh(
-            productView
-        )
+        return ProductVH(productView)
     }
 
-    override fun onBindViewHolder(holder: ProductVh, position: Int) {
-        val item =
-            getItem(position)
+    override fun onBindViewHolder(holder: ProductVH, position: Int) {
+        val item = getItem(position)
         if (item != null) holder.bind(item, listener)
     }
 
-    class ProductVh(view: View) : RecyclerView.ViewHolder(view) {
+    class ProductVH(view: View) : RecyclerView.ViewHolder(view) {
         private var tvProductName: TextView? = view.findViewById(R.id.tvProductName)
-       private var tvProductTextView: TextView? = view.findViewById(R.id.priceItems)
-      private val myImageView : ImageView? = itemView.findViewById(R.id.tvImageOfProduct)
+        private var tvProductTextView: TextView? = view.findViewById(R.id.priceItems)
+        private val productImage: ImageView? = itemView.findViewById(R.id.productImage)
 
         fun bind(product: Product, listener: Listener) {
             tvProductName?.text = product.name
             tvProductTextView?.text = product.price
-          // myImageView?.context?.let { Glide.with(it).load(url).into(myImageView) }
+            productImage?.context?.let { Glide.with(it).load(product.imageUrl).into(productImage) }
             itemView.setOnClickListener { listener.onClick(product) }
         }
     }
