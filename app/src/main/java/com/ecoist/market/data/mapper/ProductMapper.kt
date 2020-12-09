@@ -23,7 +23,7 @@ object ProductMapper {
             append( productResponse.idImage)
             append("_120_120.jpg")
         }
-
+Log.d("MYLOG","url:$imageUrl")
         return Product(
             mpn = productResponse.mpn,
             galleryName = productResponse.galleryName,
