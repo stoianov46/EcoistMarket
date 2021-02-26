@@ -10,7 +10,6 @@ class AppDelegate : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         // Init DI
         Koin.start(this)
     }

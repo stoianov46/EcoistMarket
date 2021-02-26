@@ -28,7 +28,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        oneTimeCoroutineScope(Dispatchers.IO) {
+        oneTimeCoroutineScope(Dispatchers.Main) {
             launch {
                 delay(1000)
 

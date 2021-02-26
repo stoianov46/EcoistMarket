@@ -30,7 +30,7 @@ class CategoryListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryVH {
-        val itemView =  LayoutInflater.from(parent.context)
+        val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_category_list_item, parent, false)
         return CategoryVH(itemView)
     }

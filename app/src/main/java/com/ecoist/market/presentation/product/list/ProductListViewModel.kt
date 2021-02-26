@@ -22,7 +22,7 @@ class ProductListViewModel(
 
     fun init(commonCategoryId: Long) {
         viewModelScope.launch(io) {
-            val productList = repository.getProductByIdOfCategory(commonCategoryId)
+            val productList = repository.getProductsByIdOfCategory(commonCategoryId)
             withContext(main) {
                 productListEmitter.value = productList
             }

@@ -1,6 +1,8 @@
 package com.ecoist.market.data.mapper
 
+import com.ecoist.market.data.model.Photo
 import com.ecoist.market.data.model.Product
+import com.ecoist.market.data.response.PhotoResponse
 import com.ecoist.market.data.response.ProductResponse
 
 /**
@@ -19,13 +21,16 @@ object ProductMapper {
 
     fun mapSingle(productResponse: ProductResponse): Product {
 
-        //val imageUrl: String? = "https://ecoist.com.ua/gallery/"+productResponse.galleryName+"/image_"+productResponse.idImage+"_120_120.jpg"
-        val imageUrl: String? = buildString{
-            append( "https://ecoist.com.ua/gallery/")
+        val imageUrl: String? = buildString {
+            append("https://ecoist.com.ua/gallery/")
             append(productResponse.galleryName)
             append("/image_")
-            append( productResponse.idImage)
+            append(productResponse.idImage)
             append("_120_120.jpg")
+        }
+
+        val urlForImages: String? = buildString {
+            append(productResponse.galleryName)
         }
 
         return Product(
@@ -50,7 +55,8 @@ object ProductMapper {
             idImage = productResponse.idImage,
             deleted = productResponse.deleted,
             description = productResponse.description,
-            imageUrl = imageUrl
+            imageUrl = imageUrl,
+            urlForImages = urlForImages
         )
     }
 }

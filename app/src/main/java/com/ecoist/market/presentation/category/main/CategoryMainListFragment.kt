@@ -42,7 +42,6 @@ class CategoryMainListFragment : Fragment(), CategoryListAdapter.Listener {
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
-
         viewModel.categoryListLiveData.observe(viewLifecycleOwner, categoryListObserver)
         viewModel.init()
     }
@@ -63,24 +62,6 @@ class CategoryMainListFragment : Fragment(), CategoryListAdapter.Listener {
         if (categoryList == null) return
         adapter.submitList(categoryList)
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

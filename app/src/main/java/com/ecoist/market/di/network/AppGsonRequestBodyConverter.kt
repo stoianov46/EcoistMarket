@@ -1,6 +1,5 @@
 package com.ecoist.market.di.network
 
-import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -15,7 +14,7 @@ import java.nio.charset.Charset
  * Created by Kirill Stoianov on 18/09/2020.
  */
 class AppGsonRequestBodyConverter<T>(
-    private val gson: Gson,
+    private val json: Gson,
     private val typeAdapter: TypeAdapter<T>
 ) : Converter<T, RequestBody> {
     companion object {
@@ -28,7 +27,7 @@ class AppGsonRequestBodyConverter<T>(
         try {
             val buffer = Buffer()
             val writer = OutputStreamWriter(buffer.outputStream(), UTF_8)
-            val jsonWriter = gson.newJsonWriter(writer)
+            val jsonWriter = json.newJsonWriter(writer)
             typeAdapter.write(jsonWriter, value)
             jsonWriter.close()
             return RequestBody.create(MEDIA_TYPE, buffer.readByteString())

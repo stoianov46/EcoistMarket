@@ -26,5 +26,6 @@ data class Product(
     val idImage: Int?,
     val deleted: Int?,
     val description: String?,
-    val imageUrl: String?
+    val imageUrl: String?,
+    val urlForImages:String?
 ) : Parcelable

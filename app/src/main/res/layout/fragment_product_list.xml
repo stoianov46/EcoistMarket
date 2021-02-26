@@ -8,46 +8,16 @@
     android:clickable="true"
     android:focusable="true">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbarProducts"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:fitsSystemWindows="true"
-        tools:ignore="MissingConstraints">
-
-        <Toolbar
-            android:id="@+id/toolbarProducts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorWhite"
-            app:contentInsetStartWithNavigation="0dp"
-            app:layout_collapseMode="pin"
-            app:navigationIcon="@drawable/ic_detail_back"
-            />
-
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbarProducts"
-        app:layout_constraintBottom_toTopOf="@id/bottomProduct"
-        app:layout_constraintVertical_bias="1.0"
-        android:layout_height="0dp"
-        android:layout_width="match_parent" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomProduct"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorWhite"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" >
-        ></com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

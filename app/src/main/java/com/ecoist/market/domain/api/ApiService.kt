@@ -2,6 +2,7 @@ package com.ecoist.market.domain.api
 
 import androidx.annotation.Keep
 import com.ecoist.market.data.response.CategoryResponse
+import com.ecoist.market.data.response.PhotoResponse
 import com.ecoist.market.data.response.ProductResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -26,4 +27,7 @@ interface ApiService {
 
     @GET("tss/salemod?a=load&col=id")
     suspend fun getProductById(@Query("id") id: Long): ProductResponse
+
+    @GET("tss/gallery?a=list_where&col=name")
+    suspend fun getPhotoList(@Query("name") name: String?): List<PhotoResponse>
 }

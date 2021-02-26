@@ -9,4 +9,9 @@
     <string name="x1">x1</string>
     <string name="pay">Pay</string>
     <string name="orders">Your Orders</string>
+    <string name="price">Цена</string>
+    <string name="opisanie_tovara">Описание Товара:</string>
+    <string name="status">Статус:</string>
+    <string name="full_description">Полное описание:</string>
+    <string name="Om">ॐ</string>
 </resources>

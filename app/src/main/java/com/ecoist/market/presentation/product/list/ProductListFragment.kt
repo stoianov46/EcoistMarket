@@ -21,7 +21,6 @@ class ProductListFragment : Fragment(), ProductListAdapter.Listener {
     private val args: ProductListFragmentArgs by navArgs()
     private val viewModel: ProductListViewModel by inject()
     private val productListObserver = Observer<List<Product>>(::handleProductList)
-
     private var recyclerView: RecyclerView? = null
     private val adapter =
         ProductListAdapter(this)

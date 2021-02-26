@@ -43,12 +43,14 @@ class ProductListAdapter(
     class ProductVH(view: View) : RecyclerView.ViewHolder(view) {
         private var tvProductName: TextView? = view.findViewById(R.id.tvProductName)
         private var tvProductTextView: TextView? = view.findViewById(R.id.priceItems)
-        private val productImage: ImageView? = itemView.findViewById(R.id.productImage)
+        private val productImage: ImageView? = itemView.findViewById(R.id.product_image_view_Item)
 
         fun bind(product: Product, listener: Listener) {
             tvProductName?.text = product.name
             tvProductTextView?.text = product.price
-            productImage?.context?.let { Glide.with(it).load(product.imageUrl).into(productImage) }
+            productImage?.context?.let {
+                Glide.with(it).load(product.imageUrl).into(productImage)
+            }
             itemView.setOnClickListener { listener.onClick(product) }
         }
     }
