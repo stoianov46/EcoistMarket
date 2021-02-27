@@ -39,7 +39,7 @@ class ProductViewModel(
 
     fun loadPhoto(name: String?) {
         viewModelScope.launch(io) {
-            val photoList = repository.getPhotoUrl(name)
+            val photoList = repository.getPhotoList(name)
             withContext(main) {
                 photoEmitter.value = photoList
             }

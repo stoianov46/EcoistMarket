@@ -27,7 +27,7 @@ class ProductRepository(private val apiService: ApiService) {
         return ProductMapper.map(products)
     }
 
-    suspend fun getPhotoUrl(name: String?): List<Photo> {
+    suspend fun getPhotoList(name: String?): List<Photo> {
         val photos = apiService.getPhotoList(name)
         return PhotoMapper.map(photos)
     }

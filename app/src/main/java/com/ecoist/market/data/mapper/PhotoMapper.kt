@@ -1,5 +1,6 @@
 package com.ecoist.market.data.mapper
 
+import android.util.Log
 import com.ecoist.market.data.model.Photo
 import com.ecoist.market.data.response.PhotoResponse
 
@@ -21,7 +22,7 @@ object PhotoMapper {
             append(photoResponse.name)
             append("/image_")
             append(photoResponse.id)
-            append("_120_120.jpg")
+            append(".jpg")
         }
 
         return Photo(

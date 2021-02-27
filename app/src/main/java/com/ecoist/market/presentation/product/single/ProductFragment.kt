@@ -60,9 +60,9 @@ class ProductFragment : Fragment() {
         tvTextX = view.findViewById(R.id.tvTextX)
         tvComentX = view.findViewById(R.id.tvComentX)
         recyclerView = view.findViewById(R.id.tvImageOfProductRecyclerView)
-        recyclerView?.adapter=listAdapter
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+        recyclerView?.adapter=listAdapter
         viewModel.productLiveData.observe(viewLifecycleOwner, productObserver)
         viewModel.photoLiveData.observe(viewLifecycleOwner, photoObserver)
         viewModel.loadPhoto(args.product.urlForImages)

@@ -91,7 +91,7 @@ dependencies {
     androidTestImplementation "org.koin:koin-test:$koinVersion"
 
     // NAVIGATION
-    def nav_version = "2.3.2"
+    def nav_version = "2.3.3"
 
     // Java language implementation
     implementation "androidx.navigation:navigation-fragment:$nav_version"
