@@ -5,6 +5,8 @@ import com.ecoist.market.AppDelegate
 import com.ecoist.market.di.category.categoryCommonListModule
 import com.ecoist.market.di.category.categoryMainListModule
 import com.ecoist.market.di.network.networkModule
+import com.ecoist.market.di.product.productListModule
+import com.ecoist.market.di.product.productModule
 import com.ecoist.market.di.repository.repositoryModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -31,7 +33,9 @@ object Koin {
             networkModule(),
             repositoryModule(),
             categoryMainListModule(),
-            categoryCommonListModule()
+            categoryCommonListModule(),
+            productListModule(),
+            productModule()
         )
 
         startKoin {

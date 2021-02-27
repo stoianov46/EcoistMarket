@@ -9,10 +9,25 @@ import com.ecoist.market.data.response.ProductResponse
 object ProductMapper {
 
     fun map(products: List<ProductResponse>): List<Product> {
-        return products.map { productResponse -> mapSingle(productResponse) }
+        return products
+            .filter {
+                // Exclude non-active products
+                it.isPublic == 1
+            }
+            .map { productResponse -> mapSingle(productResponse) }
     }
 
-     fun mapSingle(productResponse: ProductResponse): Product {
+    fun mapSingle(productResponse: ProductResponse): Product {
+
+        //val imageUrl: String? = "https://ecoist.com.ua/gallery/"+productResponse.galleryName+"/image_"+productResponse.idImage+"_120_120.jpg"
+        val imageUrl: String? = buildString{
+            append( "https://ecoist.com.ua/gallery/")
+            append(productResponse.galleryName)
+            append("/image_")
+            append( productResponse.idImage)
+            append("_120_120.jpg")
+        }
+
         return Product(
             mpn = productResponse.mpn,
             galleryName = productResponse.galleryName,
@@ -34,7 +49,8 @@ object ProductMapper {
             isPublic = productResponse.isPublic,
             idImage = productResponse.idImage,
             deleted = productResponse.deleted,
-            description = productResponse.description
+            description = productResponse.description,
+            imageUrl = imageUrl
         )
     }
 }

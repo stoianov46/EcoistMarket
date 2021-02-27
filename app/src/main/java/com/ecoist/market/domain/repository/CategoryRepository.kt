@@ -14,7 +14,7 @@ class CategoryRepository(private val apiService: ApiService) {
         /**
          * Id = 1 it id of top level categories on the site.
          */
-        private const val TOP_LEVEL_CATEGORY_PARENT_ID: Int = 1
+        private const val TOP_LEVEL_CATEGORY_PARENT_ID: Long = 1
     }
 
     /**
@@ -42,7 +42,7 @@ class CategoryRepository(private val apiService: ApiService) {
      * @param parentId - link to parent [CategoryResponse.id].
      * @return list of child categories of parent.
      */
-    suspend fun getChildCategoriesOf(parentId: Int): List<Category> {
+    suspend fun getChildCategoriesOf(parentId: Long): List<Category> {
         val childCategories = apiService.getChildCategories(parentId)
         return CategoryMapper.map(childCategories)
     }

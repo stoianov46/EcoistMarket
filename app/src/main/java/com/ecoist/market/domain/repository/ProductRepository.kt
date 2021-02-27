@@ -14,12 +14,12 @@ class ProductRepository(private val apiService: ApiService) {
         return ProductMapper.map(products)
     }
 
-    suspend fun getProductById(id: Int): Product {
+    suspend fun getProductById(id: Long): Product {
         val productResponse = apiService.getProductById(id)
         return ProductMapper.mapSingle(productResponse)
     }
 
-    suspend fun getProductByIdOfCategory(id: Int): List<Product> {
+    suspend fun getProductByIdOfCategory(id: Long): List<Product> {
         val products = apiService.getProductByIdOfCategory(id)
         return ProductMapper.map(products)
     }

@@ -16,14 +16,14 @@ interface ApiService {
     suspend fun getAllCategories(): List<CategoryResponse>
 
     @GET("tss/category?a=list_where&col=idParent")
-    suspend fun getChildCategories(@Query("idParent") idParent: Int): List<CategoryResponse>
+    suspend fun getChildCategories(@Query("idParent") idParent: Long): List<CategoryResponse>
 
     @GET("tss/salemod?a=list")
     suspend fun getAllProducts(): List<ProductResponse>
 
     @GET("tss/salemod?a=list_where&col=idCategory")
-    suspend fun getProductByIdOfCategory(@Query("idCategory") idCategory: Int): List<ProductResponse>
+    suspend fun getProductByIdOfCategory(@Query("idCategory") idCategory: Long): List<ProductResponse>
 
-    @GET("tss/salemod?a=list_where&col=id")
-    suspend fun getProductById(@Query("id") id: Int): ProductResponse
+    @GET("tss/salemod?a=load&col=id")
+    suspend fun getProductById(@Query("id") id: Long): ProductResponse
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.ecoist.market.R
 import com.ecoist.market.util.oneTimeCoroutineScope
@@ -30,7 +31,11 @@ class SplashFragment : Fragment() {
         oneTimeCoroutineScope(Dispatchers.IO) {
             launch {
                 delay(1000)
-                findNavController().navigate(R.id.categoryMainListFragment)
+
+                val builder: NavOptions.Builder = NavOptions.Builder()
+                val action =
+                    SplashFragmentDirections.actionSplashFragmentToCategoryMainListFragment()
+                findNavController().navigate(action, builder.build())
             }
         }
     }
