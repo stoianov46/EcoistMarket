@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">#125C02</color>
     <color name="colorPrimary">#198700</color>
-    <color name="colorAccent">#FFEB3B</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="cnb_default_badge_color">#F44336</color>
+
+
+    <color name="cnb_default_unselected_color">#696969</color>
+    <color name="colorPrimaryDark">#1D951F</color>
+    <color name="black">#010107</color>
+    <color name="colorAccent">#1D951F</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="blank">#696969</color>
+
+    <color name="home">#37D114</color>
+    <color name="activity">#1D951F</color>
+    <color name="favorites">#1D951F</color>
+    <color name="settings">#03EA3D</color>
 </resources>

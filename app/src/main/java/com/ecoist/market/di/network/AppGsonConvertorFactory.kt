@@ -9,9 +9,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import java.lang.reflect.Type
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
+
 class AppGsonConvertorFactory(
     private val gson: Gson,
     private val context: Context

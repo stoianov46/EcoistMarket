@@ -7,9 +7,6 @@ import com.ecoist.market.data.model.Product
 import com.ecoist.market.data.response.PhotoResponse
 import com.ecoist.market.domain.api.ApiService
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
 class ProductRepository(private val apiService: ApiService) {
 
     suspend fun getAllProducts(): List<Product> {

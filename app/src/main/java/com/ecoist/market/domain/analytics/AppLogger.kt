@@ -2,9 +2,6 @@ package com.ecoist.market.domain.analytics
 
 import android.util.Log
 
-/**
- * Created by Kirill Stoianov on 26/09/2020.
- */
 object AppLogger {
 
     fun debug(tag: String, message: String) {

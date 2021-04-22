@@ -13,9 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.util.concurrent.TimeUnit
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
+
 fun networkModule() = module {
 
     single {

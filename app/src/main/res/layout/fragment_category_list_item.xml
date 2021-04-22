@@ -7,14 +7,26 @@
     android:background="@color/colorWhite"
     android:minHeight="87dp">
 
+    <ImageView
+        android:id="@+id/lev"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/alternativnaya"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvCategoryName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:textSize="32sp"
+        android:layout_width="355dp"
+        android:layout_height="55dp"
+        android:textSize="21sp"
+        android:letterSpacing="-0.03"
+        android:lines="2"
+        android:gravity="center|start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="130dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Category name" />

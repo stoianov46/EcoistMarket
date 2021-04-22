@@ -11,9 +11,7 @@ import java.io.IOException
 import java.io.OutputStreamWriter
 import java.nio.charset.Charset
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
+
 class AppGsonRequestBodyConverter<T>(
     private val json: Gson,
     private val typeAdapter: TypeAdapter<T>

@@ -10,9 +10,7 @@ import com.ecoist.market.presentation.base.BaseViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/**
- * Created by Kirill Stoianov on 27/09/2020.
- */
+
 class CategoryMainListViewModel(
     application: Application,
     private val repository: CategoryRepository
@@ -31,4 +29,5 @@ class CategoryMainListViewModel(
             }
         }
     }
+
 }

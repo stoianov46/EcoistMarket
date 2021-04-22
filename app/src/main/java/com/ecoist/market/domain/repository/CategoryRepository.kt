@@ -3,11 +3,9 @@ package com.ecoist.market.domain.repository
 import com.ecoist.market.data.mapper.CategoryMapper
 import com.ecoist.market.data.model.Category
 import com.ecoist.market.data.response.CategoryResponse
+import com.ecoist.market.data.roomdb.CategoryModel
 import com.ecoist.market.domain.api.ApiService
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
 class CategoryRepository(private val apiService: ApiService) {
 
     companion object {
@@ -46,4 +44,5 @@ class CategoryRepository(private val apiService: ApiService) {
         val childCategories = apiService.getChildCategories(parentId)
         return CategoryMapper.map(childCategories)
     }
+
 }

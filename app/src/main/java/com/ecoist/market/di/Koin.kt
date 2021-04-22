@@ -16,9 +16,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
 @Keep
 object Koin {
 

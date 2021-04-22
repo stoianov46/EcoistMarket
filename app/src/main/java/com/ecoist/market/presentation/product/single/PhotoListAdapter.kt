@@ -14,7 +14,9 @@ import com.ecoist.market.data.model.Photo
 /**
  *Created by Yehor Kudimov on 11.02.2021.
  */
-class PhotoListAdapter : ListAdapter<Photo, PhotoListAdapter.PhotoVH>(diff) {
+class PhotoListAdapter(
+
+) : ListAdapter<Photo, PhotoListAdapter.PhotoVH>(diff) {
 
     companion object {
         val diff = object : DiffUtil.ItemCallback<Photo>() {
@@ -44,9 +46,9 @@ class PhotoListAdapter : ListAdapter<Photo, PhotoListAdapter.PhotoVH>(diff) {
         fun bind(photo: Photo) {
             photoProduct?.context?.let {
                 Glide.with(it).load(photo.imageUrl).into(photoProduct)
-
             }
         }
     }
+
 
 }

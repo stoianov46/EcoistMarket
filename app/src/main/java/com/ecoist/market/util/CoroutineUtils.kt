@@ -4,9 +4,6 @@ import android.app.Activity
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-/**
- * Created by Kirill Stoianov on 26/09/2020.
- */
 interface ExtendedCoroutineScope : CoroutineScope {
     /**
      * Method for attach coroutine scope.

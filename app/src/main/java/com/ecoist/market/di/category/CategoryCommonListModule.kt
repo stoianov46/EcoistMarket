@@ -5,9 +5,7 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-/**
- * Created by Kirill Stoianov on 10/2/20.
- */
+
 fun categoryCommonListModule() = module {
     viewModel {
         CategoryCommonListViewModel(

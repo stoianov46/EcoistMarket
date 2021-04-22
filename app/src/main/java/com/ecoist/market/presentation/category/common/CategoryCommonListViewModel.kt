@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ecoist.market.data.model.Category
+import com.ecoist.market.data.roomdb.CategoryModel
 import com.ecoist.market.domain.repository.CategoryRepository
 import com.ecoist.market.presentation.base.BaseViewModel
 import kotlinx.coroutines.launch

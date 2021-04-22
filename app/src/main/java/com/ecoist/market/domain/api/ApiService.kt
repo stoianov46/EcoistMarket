@@ -4,12 +4,13 @@ import androidx.annotation.Keep
 import com.ecoist.market.data.response.CategoryResponse
 import com.ecoist.market.data.response.PhotoResponse
 import com.ecoist.market.data.response.ProductResponse
+import com.ecoist.market.data.roomdb.CategoryModel
+import com.ecoist.market.data.roomdb.PhotoModel
+import com.ecoist.market.data.roomdb.ProductModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
+
 @Keep
 interface ApiService {
 
@@ -22,12 +23,17 @@ interface ApiService {
     @GET("tss/salemod?a=list")
     suspend fun getAllProducts(): List<ProductResponse>
 
+
     @GET("tss/salemod?a=list_where&col=idCategory")
     suspend fun getProductByIdOfCategory(@Query("idCategory") idCategory: Long): List<ProductResponse>
+
 
     @GET("tss/salemod?a=load&col=id")
     suspend fun getProductById(@Query("id") id: Long): ProductResponse
 
+
     @GET("tss/gallery?a=list_where&col=name")
     suspend fun getPhotoList(@Query("name") name: String?): List<PhotoResponse>
+
+
 }

@@ -17,12 +17,7 @@ import com.ecoist.market.presentation.category.adapter.CategoryListAdapter
 import com.ecoist.market.presentation.category.common.CategoryCommonListFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-/**
- * Created by Kirill Stoianov on 26/09/2020.
- */
 class CategoryMainListFragment : Fragment(), CategoryListAdapter.Listener {
-    lateinit var backToast:Toast
-    private var backPressedTime:Long = 0
     private val viewModel: CategoryMainListViewModel by viewModel()
     private val categoryListObserver = Observer<List<Category>>(::handleCategoryList)
 
@@ -39,7 +34,6 @@ class CategoryMainListFragment : Fragment(), CategoryListAdapter.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager =

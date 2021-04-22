@@ -2,14 +2,14 @@ package com.ecoist.market.data.response
 
 import android.os.Parcelable
 import androidx.annotation.Keep
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
+
 @Parcelize
 @Keep
+@Entity
 data class CategoryResponse(
     @SerializedName("id") val id: Long,
     @SerializedName("idParent") val idParent: Long,
