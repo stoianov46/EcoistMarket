@@ -10,7 +10,9 @@ fun categoryMainListModule() = module {
     viewModel {
         CategoryMainListViewModel(
             application = androidApplication(),
-            repository = get()
+            repository = get(),
+            repo = get()
+
         )
     }
 }

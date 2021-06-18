@@ -3,24 +3,23 @@ package com.ecoist.market.data.roomdb
 import androidx.annotation.Keep
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import retrofit2.http.GET
-import retrofit2.http.Query
+
 
 /**
  *Created by Yehor Kudimov on 3/12/2021.
  */
 @Dao
-@Keep
 interface ProductDao {
 
-    @GET("tss/salemod?a=list_where&col=idCategory")
-    suspend fun getProductByIdOfCategoryEco(@Query("idCategory") idCategory: Long): List<ProductModel>
+    @Query("SELECT * FROM productEco")
+    suspend fun getAll(): List<ProductModel>
 
-    @GET("tss/salemod?a=list_where&col=idCategory")
-    suspend fun getProductByIdOfCategoryLive(@Query("idCategory") idCategory: Long): LiveData<List<ProductModel>>
+    @Query("SELECT * FROM productEco")
+    fun getLiveDataCategory(): LiveData<List<ProductModel>>
 
-    @GET("tss/salemod?a=load&col=id")
-    suspend fun getProductByIdEco(@Query("id") id: Long): ProductModel
+    @Query("SELECT * FROM productEco WHERE id = :id")
+    suspend fun findById(id: String): ProductModel?
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg productEco: ProductModel)
@@ -30,9 +29,5 @@ interface ProductDao {
 
     @Update
     fun update(vararg productEco: ProductModel)
-    /*   @GET("tss/salemod?a=list")
-       suspend fun getAllProductsEco(): List<ProductModel>
 
-       @GET("tss/salemod?a=list")
-       fun getLiveData(): LiveData<List<ProductModel>>*/
 }

@@ -40,14 +40,13 @@ class ProductListFragment : Fragment(), ProductListAdapter.Listener {
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
         viewModel.productListLiveData.observe(viewLifecycleOwner, productListObserver)
-        viewModel.init(args.category.id)
+        viewModel.init(args.category!!.id)
     }
 
     override fun onClick(product: Product) {
-        val builder: NavOptions.Builder = NavOptions.Builder()
         val action =
             ProductListFragmentDirections.actionProductListFragmentToProductFragment(product)
-        findNavController().navigate(action, builder.build())
+        findNavController().navigate(action)
     }
 
     private fun handleProductList(productList: List<Product>?) {

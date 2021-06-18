@@ -37,5 +37,7 @@ data class CategoryModel(
     @ColumnInfo(name = "isPublic")
     val isPublic: Int,
     @ColumnInfo(name = "show_links")
-    val show_links: Int
-):Parcelable
+    val show_links: Int,
+    @ColumnInfo(name = "image")
+    val image: String
+) : Parcelable

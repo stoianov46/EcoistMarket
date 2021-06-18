@@ -53,13 +53,13 @@ class ProductFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var str= args.product.id
-        bind.button.setOnClickListener {
-            val uri: Uri =
-                Uri.parse("http://www.ecoist.com.ua/"+str) // missing 'http://' will cause crashed
-
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
-        }
+//        bind.button.setOnClickListener {
+//            val uri: Uri =
+//                Uri.parse("http://www.ecoist.com.ua/"+str) // missing 'http://' will cause crashed
+//
+//            val intent = Intent(Intent.ACTION_VIEW, uri)
+//            startActivity(intent)
+//        }
         tvProductName = view.findViewById(R.id.tvProductName)
         tvProductDescriptionFull = view.findViewById(R.id.tvProductTextFull)
         tvProductDescription = view.findViewById(R.id.tvText)

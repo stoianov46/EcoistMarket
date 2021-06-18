@@ -2,8 +2,7 @@ package com.ecoist.market.data.roomdb
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import retrofit2.http.GET
-import retrofit2.http.Query
+
 
 /**
  *Created by Yehor Kudimov on 3/12/2021.
@@ -11,12 +10,15 @@ import retrofit2.http.Query
 @Dao
 interface PhotoDao {
 
+    @Query("SELECT * FROM photo")
+    suspend fun getAll(): List<PhotoModel>
 
-    @GET("tss/gallery?a=list_where&col=name")
-    suspend fun getPhotoListEco(@Query("name") name: String?): List<PhotoModel>
+    @Query("SELECT * FROM photo")
+    fun getLiveDataCategory(): LiveData<List<PhotoModel>>
 
-    @GET("tss/gallery?a=list_where&col=name")
-    suspend fun getLiveData(@Query("name") name: String?): LiveData<List<PhotoModel>>
+    @Query("SELECT * FROM photo WHERE id = :id")
+    suspend fun findById(id: String): PhotoModel?
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg photo: PhotoModel)

@@ -18,22 +18,24 @@ import kotlinx.coroutines.*
 
 class CategoryRepositoryEco(
     private val apiService: ApiService
-):NetworkBoundResource<CategoryModel,CategoryResponse> (){
-    val io: CoroutineDispatcher
-        get() = Dispatchers.IO
-    private val dao = EcoDataBase.instance!!.getCategoryDao()
+) : NetworkBoundResource<CategoryModel, CategoryResponse>() {
+
+    val dao = EcoDataBase.instance!!.getCategoryDao()
+    val livedate = dao.getLiveDataCategory()
+
     companion object {
         private const val TOP_LEVEL_CATEGORY_PARENT_ID: Long = 1
-    }
-    val categoryListLiveDataXXX: LiveData<List<CategoryModel>>
-        get() = categoryListEmitterxxx
 
-    private val categoryListEmitterxxx = MutableLiveData<List<CategoryModel>>()
+    }
+
+    suspend fun coffee() = dao.insert(*getTopLevelCategoriesRoom().toTypedArray())
+
 
     suspend fun getTopLevelCategoriesRoom(): List<CategoryModel> {
         return this.getChildCategoriesOfRoom(TOP_LEVEL_CATEGORY_PARENT_ID)
     }
 
+    //first
     suspend fun getChildCategoriesOfRoom(parentId: Long): List<CategoryModel> {
         val childCategories = apiService.getChildCategories(parentId)
         return CategoryMapper.mapModel(childCategories)
@@ -44,7 +46,7 @@ class CategoryRepositoryEco(
     }
 
     override suspend fun saveCallResults(items: CategoryModel) {
-    
+
     }
 
     override fun shouldFetch(data: CategoryModel?): Boolean {
@@ -58,6 +60,9 @@ class CategoryRepositoryEco(
     override fun createCallAsync(): Deferred<CategoryResponse> {
         TODO("Not yet implemented")
     }
+
+    val io: CoroutineDispatcher
+        get() = Dispatchers.IO
 
 }
 

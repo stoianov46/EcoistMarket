@@ -4,25 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ecoist.market.R
-import com.ecoist.market.data.model.Category
-import com.ecoist.market.presentation.category.adapter.CategoryListAdapter
-import com.ecoist.market.presentation.category.common.CategoryCommonListFragmentDirections
+import com.ecoist.market.data.roomdb.CategoryModel
+import com.ecoist.market.data.roomdb.RoomCatListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CategoryMainListFragment : Fragment(), CategoryListAdapter.Listener {
+class CategoryMainListFragment : Fragment() , RoomCatListAdapter.Listener{
     private val viewModel: CategoryMainListViewModel by viewModel()
-    private val categoryListObserver = Observer<List<Category>>(::handleCategoryList)
+    //private val categoryListObserver = Observer<List<Category>>(::handleCategoryList)
+    private val categoryListObserver2 = Observer<List<CategoryModel>>(::handleCategoryListModel)
 
     private var recyclerView: RecyclerView? = null
-    private val adapter = CategoryListAdapter(this)
+   // private val adapter = CategoryListAdapter(this)
+    private val adapter1 = RoomCatListAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,29 +34,32 @@ class CategoryMainListFragment : Fragment(), CategoryListAdapter.Listener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView?.adapter = adapter
+        recyclerView?.adapter = adapter1
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
-        viewModel.categoryListLiveData.observe(viewLifecycleOwner, categoryListObserver)
-        viewModel.init()
+     //   viewModel.categoryListLiveData.observe(viewLifecycleOwner, categoryListObserver)
+        viewModel.categoryListLiveDataRoom.observe(viewLifecycleOwner, categoryListObserver2)
+     //   viewModel.init()
+        viewModel.initMain()
     }
 
-    override fun onClick(category: Category) {
-        val builder: NavOptions.Builder = NavOptions.Builder()
-        // builder.setEnterAnim(R.anim.slide_in_right).setExitAnim(R.anim.slide_out_left).build();
+  //  private fun handleCategoryList(categoryList: List<Category>?) {
+   //     if (categoryList == null) return
+   //     adapter.submitList(categoryList)
+    //}
+    private fun handleCategoryListModel(categoryList: List<CategoryModel>?) {
+        if (categoryList == null) return
+        adapter1.submitList(categoryList)
+    }
+
+    override fun onClick1(category: CategoryModel) {
 
         val action =
             CategoryMainListFragmentDirections.actionCategoryListFragmentToCategoryCommonListFragment(
                 category = category,
                 categoryId = category.id
             )
-        findNavController().navigate(action, builder.build())
-    }
-
-    private fun handleCategoryList(categoryList: List<Category>?) {
-        if (categoryList == null) return
-        adapter.submitList(categoryList)
-    }
+        findNavController().navigate(action)  }
 
 
 }

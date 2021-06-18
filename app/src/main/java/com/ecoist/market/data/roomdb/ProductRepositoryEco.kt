@@ -14,7 +14,7 @@ class ProductRepositoryEco (private val apiService: ApiService) {
     val io: CoroutineDispatcher
         get() = Dispatchers.IO
 
-    private val dao = EcoDataBase.instance!!.getProductDao()
+            //  private val dao = EcoDataBase.instance!!.getProductDao()
 
 
     suspend fun getProductById(id: Long): ProductModel {
@@ -27,7 +27,4 @@ class ProductRepositoryEco (private val apiService: ApiService) {
         return ProductMapper.mapRoom(products)
     }
 
-    suspend fun initProduct() = withContext(io) {
-        dao.insert()
-    }
 }

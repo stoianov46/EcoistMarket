@@ -1,23 +1,25 @@
 package com.ecoist.market.data.roomdb
 
-import androidx.annotation.Keep
+
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import retrofit2.http.GET
-import retrofit2.http.Query
 
 
 /**
  *Created by Yehor Kudimov on 3/12/2021.
  */
 @Dao
-@Keep
-interface CategoryDao {
-    @GET()
-    suspend fun getEcoCategories(@Query("idParent") idParent: Long): List<CategoryModel>
 
-    @GET()
-    suspend fun getCategoriesLive(@Query("idParent") idParent: Long): LiveData<List<CategoryModel>>
+interface CategoryDao {
+
+    @Query("SELECT * FROM category")
+    suspend fun getAll(): List<CategoryModel>
+
+    @Query("SELECT * FROM category")
+    fun getLiveDataCategory(): LiveData<List<CategoryModel>>
+
+    @Query("SELECT * FROM category WHERE id = :id")
+    suspend fun findById(id: String): CategoryModel?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg category: CategoryModel)

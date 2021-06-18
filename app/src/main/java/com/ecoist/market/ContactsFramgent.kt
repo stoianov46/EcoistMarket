@@ -29,13 +29,6 @@ class ContactsFramgent : Fragment() {
             )
             startActivity(Intent(Intent.ACTION_VIEW,uri))
         }
-        view.findViewById<ImageView>(R.id.eco).setOnClickListener {
-            var uri = Uri.parse(
-                "https://ecoist.com.ua"
-            )
-            startActivity(Intent(Intent.ACTION_VIEW,uri))
-        }
-
     }
 
 }
