@@ -43,10 +43,17 @@ class CategoryCommonListViewModel(
         viewModelScope.launch(io) {
             val commonLevelCategory = repo.getChildCategoriesOfRoom(parentCategoryId)
             repo.dao.insert(*commonLevelCategory.toTypedArray())
-//            withContext(main) {
-//                //categoryListLiveDataXXX.value=commonLevelCategory
-//                categoryListEmitterz.value = commonLevelCategory
-//            }
+            withContext(main) {
+                categoryListEmitterRoom.value = commonLevelCategory
+                               }
+        }
+    }
+    fun initMain() {
+        viewModelScope.launch(io) {
+            val topLevelCategoriesz = repo.getTopLevelCategoriesRoom()
+            withContext(main) {
+                categoryListEmitterRoom.value = topLevelCategoriesz
+            }
         }
     }
 }

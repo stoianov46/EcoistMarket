@@ -55,6 +55,4 @@ class CategoryCommonListFragment : Fragment(),RoomCatListAdapter.Listener {
         if (categoryList == null) return
         adapter1.submitList(categoryList)
     }
-
-
 }

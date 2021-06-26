@@ -41,7 +41,7 @@ object CategoryMapper {
                 68 -> return str + "biotoplivo/image_6719_190_190.gif"
             }
 
-            /*when (categoryResponse.alias) {
+            when (categoryResponse.alias) {
                  "solnechnie-batarei" -> return str + "solnechnie-batarei/image_9734_190_190.gif"
                   "setevie-electrostancii" -> return str + "setevie-electrostancii/image_11004_190_190.gif"
                  "avtonomnie-electrostancii" -> return str + "avtonomnie-electrostancii/image_9733_190_190.gif"
@@ -106,7 +106,7 @@ object CategoryMapper {
                  "electricheskie-teploventiliatori" ->return str +"electricheskie-teploventiliatori/image_5793_190_190.gif"
                  "elektrokotli" ->return str +  "elektrokotli/image_6401_190_190.gif"
                  "keramicheskie-paneli" ->return str +  "keramicheskie-paneli/image_11062_190_190.gif"
-             }*/
+             }
             return str
         }
         return CategoryModel(
