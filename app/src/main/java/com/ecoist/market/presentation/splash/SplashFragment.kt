@@ -34,7 +34,7 @@ class SplashFragment : Fragment() {
 
         oneTimeCoroutineScope(Dispatchers.Main) {
             launch {
-                delay(3000)
+                delay(2000)
                 val action =
                     SplashFragmentDirections.actionSplashFragmentToCategoryMainListFragment()
                 findNavController().navigate(action)

@@ -24,7 +24,6 @@ class RoomCatListAdapter( private var listener: Listener) :
             override fun areItemsTheSame(oldItem: CategoryModel, newItem: CategoryModel): Boolean {
                 return oldItem.id == newItem.id && oldItem.idParent == newItem.idParent
             }
-
             override fun areContentsTheSame(
                 oldItem: CategoryModel,
                 newItem: CategoryModel

@@ -25,10 +25,9 @@
         android:label="CategoryMainListFragment">
         <action
             android:id="@+id/action_categoryListFragment_to_categoryCommonListFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@+id/categoryMainListFragment"
-            app:popUpToInclusive="true"
-            app:destination="@id/categoryCommonListFragment" />
+            app:destination="@id/categoryCommonListFragment"
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/categoryCommonListFragment"
@@ -37,7 +36,7 @@
         <argument
             android:name="category"
             android:defaultValue="@null"
-            app:argType="com.ecoist.market.data.model.Category"
+            app:argType="com.ecoist.market.data.roomdb.CategoryModel"
             app:nullable="true" />
         <argument
             android:name="categoryId"
@@ -63,7 +62,9 @@
             app:destination="@id/productFragment" />
         <argument
             android:name="category"
-            app:argType="com.ecoist.market.data.model.Category" />
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.ecoist.market.data.roomdb.CategoryModel"/>
     </fragment>
     <fragment
         android:id="@+id/bucketFragment"

@@ -30,7 +30,6 @@ class CategoryMainListFragment : Fragment() , RoomCatListAdapter.Listener{
     ): View? {
         return inflater.inflate(R.layout.fragment_category_main_list, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recyclerView)
@@ -42,7 +41,6 @@ class CategoryMainListFragment : Fragment() , RoomCatListAdapter.Listener{
      //   viewModel.init()
         viewModel.initMain()
     }
-
   //  private fun handleCategoryList(categoryList: List<Category>?) {
    //     if (categoryList == null) return
    //     adapter.submitList(categoryList)
@@ -53,7 +51,6 @@ class CategoryMainListFragment : Fragment() , RoomCatListAdapter.Listener{
     }
 
     override fun onClick1(category: CategoryModel) {
-
         val action =
             CategoryMainListFragmentDirections.actionCategoryListFragmentToCategoryCommonListFragment(
                 category = category,

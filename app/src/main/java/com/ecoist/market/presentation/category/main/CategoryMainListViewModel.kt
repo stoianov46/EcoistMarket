@@ -25,9 +25,10 @@ class CategoryMainListViewModel(
 
     val categoryListLiveDataRoom: LiveData<List<CategoryModel>>
         get() = categoryListEmitterRoom
+
     private val categoryListEmitterRoom = MutableLiveData<List<CategoryModel>>()
 
-  //  val categoryListLiveDataFromRoom = repo.livedate
+    //  val categoryListLiveDataFromRoom = repo.livedate
 
     fun init() {
         viewModelScope.launch(io) {
@@ -40,12 +41,10 @@ class CategoryMainListViewModel(
 
     fun initMain() {
         viewModelScope.launch(io) {
-            val topLevelCategoriesz =  repo.getTopLevelCategoriesRoom()
+            val topLevelCategoriesz = repo.getTopLevelCategoriesRoom()
             withContext(main) {
                 categoryListEmitterRoom.value = topLevelCategoriesz
             }
         }
-
     }
-
 }
