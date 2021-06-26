@@ -4,30 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
-    android:minHeight="87dp">
+    android:layout_marginVertical="3dp"
 
-    <ImageView
-        android:id="@+id/lev"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/alternativnaya"
-        app:layout_constraintBottom_toBottomOf="parent"
+    android:minHeight="87dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/lev2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="12dp"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/lev"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/alternativnaya"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+
 
     <TextView
         android:id="@+id/tvCategoryName"
-        android:layout_width="355dp"
-        android:layout_height="55dp"
-        android:textSize="21sp"
-        android:letterSpacing="-0.03"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toEndOf="@id/lev2"
+        android:layout_height="match_parent"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+android:layout_marginStart="3dp"
         android:lines="2"
+        android:layout_marginEnd="10dp"
         android:gravity="center|start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="130dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Category name" />
 
