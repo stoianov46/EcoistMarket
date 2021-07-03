@@ -12,39 +12,20 @@ import com.ecoist.market.presentation.base.BaseViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
 class CategoryMainListViewModel(
     application: Application,
     private val repository: CategoryRepository, private val repo: CategoryRepositoryEco
 ) : BaseViewModel(application) {
 
-    val categoryListLiveData: LiveData<List<Category>>
-        get() = categoryListEmitter
-    private val categoryListEmitter = MutableLiveData<List<Category>>()
-
-
     val categoryListLiveDataRoom: LiveData<List<CategoryModel>>
         get() = categoryListEmitterRoom
-
     private val categoryListEmitterRoom = MutableLiveData<List<CategoryModel>>()
 
-    //  val categoryListLiveDataFromRoom = repo.livedate
-
-    fun init() {
-        viewModelScope.launch(io) {
-            val topLevelCategories = repository.getTopLevelCategories()
-            withContext(main) {
-                categoryListEmitter.value = topLevelCategories
-            }
-        }
-    }
+    val liveDate = repo.getLiveDateById(1)
 
     fun initMain() {
         viewModelScope.launch(io) {
-            val topLevelCategoriesz = repo.getTopLevelCategoriesRoom()
-            withContext(main) {
-                categoryListEmitterRoom.value = topLevelCategoriesz
-            }
+            repo.getTopLevelCategoriesRoom()
         }
     }
 }

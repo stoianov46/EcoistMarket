@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         var van = findNavController(R.id.navHostFragment)
        EcoDataBase.init(applicationContext)
         lifecycleScope.launch {
-       //    CategoryRepositoryEco
+
         }
         var bottom = findViewById<BottomNavigationView>(R.id.bottom_nav)
         van.addOnDestinationChangedListener { _, destination, _ ->
@@ -38,9 +38,7 @@ class MainActivity : AppCompatActivity() {
                 bottom.visibility = View.VISIBLE
             }
         }
-
         bottom.setupWithNavController(van)
-
     }
 }
 

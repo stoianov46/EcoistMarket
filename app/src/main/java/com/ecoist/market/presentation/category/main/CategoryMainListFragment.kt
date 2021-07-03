@@ -16,12 +16,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CategoryMainListFragment : Fragment() , RoomCatListAdapter.Listener{
     private val viewModel: CategoryMainListViewModel by viewModel()
-    //private val categoryListObserver = Observer<List<Category>>(::handleCategoryList)
-    private val categoryListObserver2 = Observer<List<CategoryModel>>(::handleCategoryListModel)
-
+    private val categoryListObserver = Observer<List<CategoryModel>>(::handleCategoryListModel)
     private var recyclerView: RecyclerView? = null
-   // private val adapter = CategoryListAdapter(this)
-    private val adapter1 = RoomCatListAdapter(this)
+    private val adapter = RoomCatListAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,30 +30,21 @@ class CategoryMainListFragment : Fragment() , RoomCatListAdapter.Listener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView?.adapter = adapter1
+        recyclerView?.adapter = adapter
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
-     //   viewModel.categoryListLiveData.observe(viewLifecycleOwner, categoryListObserver)
-        viewModel.categoryListLiveDataRoom.observe(viewLifecycleOwner, categoryListObserver2)
-     //   viewModel.init()
         viewModel.initMain()
+        viewModel.liveDate.observe(viewLifecycleOwner, categoryListObserver)
     }
-  //  private fun handleCategoryList(categoryList: List<Category>?) {
-   //     if (categoryList == null) return
-   //     adapter.submitList(categoryList)
-    //}
     private fun handleCategoryListModel(categoryList: List<CategoryModel>?) {
         if (categoryList == null) return
-        adapter1.submitList(categoryList)
+        adapter.submitList(categoryList)
     }
-
-    override fun onClick1(category: CategoryModel) {
+    override fun onClick(category: CategoryModel) {
         val action =
             CategoryMainListFragmentDirections.actionCategoryListFragmentToCategoryCommonListFragment(
                 category = category,
                 categoryId = category.id
             )
         findNavController().navigate(action)  }
-
-
 }

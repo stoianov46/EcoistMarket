@@ -10,20 +10,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ecoist.market.R
-import com.ecoist.market.data.model.Category
-import com.ecoist.market.presentation.category.adapter.CategoryListAdapter
-import java.util.zip.Inflater
 
 /**
  *Created by Yehor Kudimov on 4/27/2021.
  */
-class RoomCatListAdapter( private var listener: Listener) :
+class RoomCatListAdapter(private var listener: Listener) :
     ListAdapter<CategoryModel, RoomCatListAdapter.RoomCatVh>(diff) {
     companion object {
         val diff = object : DiffUtil.ItemCallback<CategoryModel>() {
             override fun areItemsTheSame(oldItem: CategoryModel, newItem: CategoryModel): Boolean {
                 return oldItem.id == newItem.id && oldItem.idParent == newItem.idParent
             }
+
             override fun areContentsTheSame(
                 oldItem: CategoryModel,
                 newItem: CategoryModel
@@ -32,7 +30,6 @@ class RoomCatListAdapter( private var listener: Listener) :
             }
         }
     }
-
 
     class RoomCatVh(val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -46,7 +43,7 @@ class RoomCatListAdapter( private var listener: Listener) :
             }
             tvCategoryName?.text = category.name
             itemView.setOnClickListener {
-                listener.onClick1(category)
+                listener.onClick(category)
             }
         }
     }
@@ -55,7 +52,6 @@ class RoomCatListAdapter( private var listener: Listener) :
         var inflater = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_category_list_item, parent, false)
         return RoomCatVh(inflater.rootView)
-
     }
 
     override fun onBindViewHolder(holder: RoomCatVh, position: Int) {
@@ -64,7 +60,6 @@ class RoomCatListAdapter( private var listener: Listener) :
     }
 
     interface Listener {
-        fun onClick1(category: CategoryModel)
+        fun onClick(category: CategoryModel)
     }
-
 }

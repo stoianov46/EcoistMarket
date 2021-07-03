@@ -10,7 +10,6 @@ fun categoryCommonListModule() = module {
     viewModel {
         CategoryCommonListViewModel(
             application = androidApplication(),
-            repository = get(),
             repo = get()
         )
     }

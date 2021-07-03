@@ -9,24 +9,15 @@ import androidx.room.*
  *Created by Yehor Kudimov on 3/12/2021.
  */
 @Dao
-
 interface CategoryDao {
 
-    @Query("SELECT * FROM category")
-    suspend fun getAll(): List<CategoryModel>
+    @Query("SELECT * FROM category WHERE idParent= :id")
+    fun getLiveDataCategory(id: Long): LiveData<List<CategoryModel>>
 
-    @Query("SELECT * FROM category")
-    fun getLiveDataCategory(): LiveData<List<CategoryModel>>
-
-    @Query("SELECT * FROM category WHERE id = :id")
-    suspend fun findById(id: String): CategoryModel?
+    @Query("SELECT * FROM category WHERE idParent = :id")
+    suspend fun findByIdParent(id: Long): List<CategoryModel>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg category: CategoryModel)
 
-    @Delete
-    fun delete(vararg category: CategoryModel)
-
-    @Update
-    fun update(vararg category: CategoryModel)
 }

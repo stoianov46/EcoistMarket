@@ -15,15 +15,13 @@ import com.ecoist.market.data.roomdb.CategoryModel
 import com.ecoist.market.data.roomdb.RoomCatListAdapter
 import org.koin.android.ext.android.inject
 
-class CategoryCommonListFragment : Fragment(),RoomCatListAdapter.Listener {
+class CategoryCommonListFragment : Fragment(), RoomCatListAdapter.Listener {
 
     private val args: CategoryCommonListFragmentArgs by navArgs()
     private val viewModel: CategoryCommonListViewModel by inject()
     private val categoryListObserver = Observer<List<CategoryModel>>(::handleCategoryList)
-
     private var recyclerView: RecyclerView? = null
-  //  private val adapter = CategoryListAdapter(this)
-    private val adapter1 = RoomCatListAdapter(this)
+    private val adapter = RoomCatListAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,14 +34,16 @@ class CategoryCommonListFragment : Fragment(),RoomCatListAdapter.Listener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView?.adapter = adapter1
+        recyclerView?.adapter = adapter
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
-        viewModel.categoryListLiveDataRoom.observe(viewLifecycleOwner, categoryListObserver)
-        viewModel.coffeFilter(args.categoryId)
+        viewModel.initCommonCat(args.category!!.idParent)
+        viewModel.liveDate(args.category!!.idParent)
+            .observe(viewLifecycleOwner, categoryListObserver)
+        //viewModel.categoryListLiveDataRoom.observe()
     }
 
-    override fun onClick1(category: CategoryModel) {
+    override fun onClick(category: CategoryModel) {
         val action =
             CategoryCommonListFragmentDirections.actionCategoryCommonListFragmentToProductListFragment(
                 category
@@ -53,6 +53,6 @@ class CategoryCommonListFragment : Fragment(),RoomCatListAdapter.Listener {
 
     private fun handleCategoryList(categoryList: List<CategoryModel>?) {
         if (categoryList == null) return
-        adapter1.submitList(categoryList)
+        adapter.submitList(categoryList)
     }
 }
