@@ -5,18 +5,17 @@ import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ecoist.market.data.roomdb.Resource
 import kotlinx.coroutines.*
 import kotlin.coroutines.coroutineContext
 
 abstract class NetworkBoundResource<ResultType, RequestType> {
 
-    private val result = MutableLiveData<Resource<ResultType>>()
+    private val result = MutableLiveData<ResourceOne<ResultType>>()
     private val supervisorJob = SupervisorJob()
 
     suspend fun build(): NetworkBoundResource<ResultType, RequestType> {
         withContext(Dispatchers.Main) { result.value =
-            Resource.loading(null)
+            ResourceOne.loading(null)
         }
         CoroutineScope(coroutineContext).launch(supervisorJob) {
             val dbResult = loadFromDb()
@@ -25,31 +24,29 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                     fetchFromNetwork(dbResult)
                 } catch (e: Exception) {
                     Log.e("NetworkBoundResource", "An error happened: $e")
-                    setValue(Resource.error(e, loadFromDb()))
+                    setValue(ResourceOne.error(e, loadFromDb()))
                 }
             } else {
                 Log.d(NetworkBoundResource::class.java.name, "Return data from local database")
-                setValue(Resource.success(dbResult))
+                setValue(ResourceOne.success(dbResult))
             }
         }
         return this
     }
 
-    fun asLiveData() = result as LiveData<Resource<ResultType>>
-
-    // ---
+    fun asLiveData() = result as LiveData<ResourceOne<ResultType>>
 
     private suspend fun fetchFromNetwork(dbResult: ResultType) {
         Log.d(NetworkBoundResource::class.java.name, "Fetch data from network")
-        setValue(Resource.loading(dbResult)) // Dispatch latest value quickly (UX purpose)
+        setValue(ResourceOne.loading(dbResult)) // Dispatch latest value quickly (UX purpose)
         val apiResponse = createCallAsync().await()
         Log.e(NetworkBoundResource::class.java.name, "Data fetched from network")
         saveCallResults(processResponse(apiResponse))
-        setValue(Resource.success(loadFromDb()))
+        setValue(ResourceOne.success(loadFromDb()))
     }
 
     @MainThread
-    private fun setValue(newValue: Resource<ResultType>) {
+    private fun setValue(newValue: ResourceOne<ResultType>) {
         Log.d(NetworkBoundResource::class.java.name, "Resource: "+newValue)
         if (result.value != newValue) result.postValue(newValue)
     }

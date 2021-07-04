@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ecoist.market.R
 import com.ecoist.market.data.roomdb.CategoryModel
+import com.ecoist.market.data.roomdb.Resource
 import com.ecoist.market.data.roomdb.RoomCatListAdapter
 import org.koin.android.ext.android.inject
 
@@ -19,7 +20,7 @@ class CategoryCommonListFragment : Fragment(), RoomCatListAdapter.Listener {
 
     private val args: CategoryCommonListFragmentArgs by navArgs()
     private val viewModel: CategoryCommonListViewModel by inject()
-    private val categoryListObserver = Observer<List<CategoryModel>>(::handleCategoryList)
+    private val categoryListObserver = Observer<Resource<List<CategoryModel>>>(::handleCategoryList)
     private var recyclerView: RecyclerView? = null
     private val adapter = RoomCatListAdapter(this)
 
@@ -37,10 +38,8 @@ class CategoryCommonListFragment : Fragment(), RoomCatListAdapter.Listener {
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
-        viewModel.initCommonCat(args.category!!.idParent)
-        viewModel.liveDate(args.category!!.idParent)
+        viewModel.resource(args.categoryId)
             .observe(viewLifecycleOwner, categoryListObserver)
-        //viewModel.categoryListLiveDataRoom.observe()
     }
 
     override fun onClick(category: CategoryModel) {
@@ -51,8 +50,9 @@ class CategoryCommonListFragment : Fragment(), RoomCatListAdapter.Listener {
         findNavController().navigate(action)
     }
 
-    private fun handleCategoryList(categoryList: List<CategoryModel>?) {
+    private fun handleCategoryList(categoryList: Resource<List<CategoryModel>>?) {
         if (categoryList == null) return
-        adapter.submitList(categoryList)
-    }
+
+        adapter.submitList(categoryList.data)
+}
 }

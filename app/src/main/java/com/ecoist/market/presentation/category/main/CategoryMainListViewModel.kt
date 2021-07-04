@@ -3,6 +3,7 @@ package com.ecoist.market.presentation.category.main
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.ecoist.market.data.model.Category
 import com.ecoist.market.data.roomdb.CategoryModel
@@ -17,15 +18,12 @@ class CategoryMainListViewModel(
     private val repository: CategoryRepository, private val repo: CategoryRepositoryEco
 ) : BaseViewModel(application) {
 
-    val categoryListLiveDataRoom: LiveData<List<CategoryModel>>
-        get() = categoryListEmitterRoom
-    private val categoryListEmitterRoom = MutableLiveData<List<CategoryModel>>()
+  //  val liveDate = repo.getLiveDateById(1)
+    val resource=repo.getItems(1).asLiveData()
 
-    val liveDate = repo.getLiveDateById(1)
-
-    fun initMain() {
+    /*fun initMain() {
         viewModelScope.launch(io) {
             repo.getTopLevelCategoriesRoom()
         }
-    }
+    }*/
 }

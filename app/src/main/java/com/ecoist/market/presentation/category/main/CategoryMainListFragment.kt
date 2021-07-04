@@ -14,7 +14,7 @@ import com.ecoist.market.data.roomdb.CategoryModel
 import com.ecoist.market.data.roomdb.RoomCatListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CategoryMainListFragment : Fragment() , RoomCatListAdapter.Listener{
+class CategoryMainListFragment : Fragment(), RoomCatListAdapter.Listener {
     private val viewModel: CategoryMainListViewModel by viewModel()
     private val categoryListObserver = Observer<List<CategoryModel>>(::handleCategoryListModel)
     private var recyclerView: RecyclerView? = null
@@ -27,24 +27,29 @@ class CategoryMainListFragment : Fragment() , RoomCatListAdapter.Listener{
     ): View? {
         return inflater.inflate(R.layout.fragment_category_main_list, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
-        viewModel.initMain()
-        viewModel.liveDate.observe(viewLifecycleOwner, categoryListObserver)
+        viewModel.resource.observe(viewLifecycleOwner) { result ->
+            adapter.submitList(result.data)
+        }
     }
+
     private fun handleCategoryListModel(categoryList: List<CategoryModel>?) {
         if (categoryList == null) return
         adapter.submitList(categoryList)
     }
+
     override fun onClick(category: CategoryModel) {
         val action =
             CategoryMainListFragmentDirections.actionCategoryListFragmentToCategoryCommonListFragment(
                 category = category,
                 categoryId = category.id
             )
-        findNavController().navigate(action)  }
+        findNavController().navigate(action)
+    }
 }
