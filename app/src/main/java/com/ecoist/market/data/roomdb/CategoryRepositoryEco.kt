@@ -1,14 +1,10 @@
 package com.ecoist.market.data.roomdb
 
-import androidx.lifecycle.LiveData
 import com.ecoist.market.data.mapper.CategoryMapper
 import com.ecoist.market.data.response.CategoryResponse
 import com.ecoist.market.domain.api.ApiService
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
-import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeUnit
 
 /**
  *Created by Yehor Kudimov on 3/12/2021.
@@ -62,7 +58,7 @@ class CategoryRepositoryEco(
     }
 
     override fun createCallAsync(): Deferred<List<CategoryResponse>> {
-        return apiService.getAllCategoriesDeff()
+        return apiService.getAllCategoriesDeffAsync()
     }
 
 }

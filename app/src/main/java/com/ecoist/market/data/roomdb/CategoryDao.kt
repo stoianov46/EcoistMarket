@@ -24,8 +24,6 @@ interface CategoryDao {
     @Query("SELECT * FROM category WHERE idParent= :id")
     fun getCategoryFlowX(id:Long): Flow<List<CategoryModel>>
 
-    @Query("SELECT * FROM category WHERE idParent = :id")
-    suspend fun findByIdParent(id: Long): List<CategoryModel>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
    suspend fun insert(vararg category: CategoryModel)

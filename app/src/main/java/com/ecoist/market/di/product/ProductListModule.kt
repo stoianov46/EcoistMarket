@@ -10,7 +10,8 @@ fun productListModule() = module {
     viewModel {
         ProductListViewModel(
             application = androidApplication(),
-            repository = get()
+            repository = get(),
+            repo = get()
         )
     }
 }

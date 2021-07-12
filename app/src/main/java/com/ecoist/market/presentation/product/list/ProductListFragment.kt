@@ -11,8 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
 import com.ecoist.market.R
 import com.ecoist.market.data.model.Product
+import com.ecoist.market.data.roomdb.ProductModel
+import com.ecoist.market.data.roomdb.Resource
 import com.ecoist.market.presentation.product.adapter.ProductListAdapter
 import org.koin.android.ext.android.inject
 
@@ -20,7 +23,7 @@ class ProductListFragment : Fragment(), ProductListAdapter.Listener {
 
     private val args: ProductListFragmentArgs by navArgs()
     private val viewModel: ProductListViewModel by inject()
-    private val productListObserver = Observer<List<Product>>(::handleProductList)
+    private val productListObserver = Observer<Resource<List<ProductModel>>>(::handleProductList)
     private var recyclerView: RecyclerView? = null
     private val adapter =
         ProductListAdapter(this)
@@ -39,18 +42,17 @@ class ProductListFragment : Fragment(), ProductListAdapter.Listener {
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
-        viewModel.productListLiveData.observe(viewLifecycleOwner, productListObserver)
-        viewModel.init(args.category!!.id)
+        viewModel.listProducts(args.category!!.id).observe(viewLifecycleOwner, productListObserver)
     }
 
-    override fun onClick(product: Product) {
+    override fun onClick(product: ProductModel) {
         val action =
             ProductListFragmentDirections.actionProductListFragmentToProductFragment(product)
         findNavController().navigate(action)
     }
 
-    private fun handleProductList(productList: List<Product>?) {
+    private fun handleProductList(productList: Resource<List<ProductModel>>?) {
         if (productList == null) return
-        adapter.submitList(productList)
+        adapter.submitList(productList.data)
     }
 }

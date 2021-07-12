@@ -10,21 +10,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ecoist.market.R
 import com.ecoist.market.data.model.Photo
+import com.ecoist.market.data.roomdb.PhotoModel
 
 /**
- *Created by Yehor Kudimov on 11.02.2021.
+ *Created by Yehor Kudimov on 11.05.2021.
  */
 class PhotoListAdapter(
 
-) : ListAdapter<Photo, PhotoListAdapter.PhotoVH>(diff) {
+) : ListAdapter<PhotoModel, PhotoListAdapter.PhotoVH>(diff) {
 
     companion object {
-        val diff = object : DiffUtil.ItemCallback<Photo>() {
-            override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean {
+        val diff = object : DiffUtil.ItemCallback<PhotoModel>() {
+            override fun areItemsTheSame(oldItem: PhotoModel, newItem: PhotoModel): Boolean {
                 return oldItem.id == newItem.id && oldItem.name == newItem.name
             }
 
-            override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
+            override fun areContentsTheSame(oldItem: PhotoModel, newItem: PhotoModel): Boolean {
                 return oldItem.imageUrl == newItem.imageUrl
             }
         }
@@ -43,7 +44,7 @@ class PhotoListAdapter(
 
     class PhotoVH(view: View) : RecyclerView.ViewHolder(view) {
         private val photoProduct: ImageView? = itemView.findViewById(R.id.tvPhotoItem)
-        fun bind(photo: Photo) {
+        fun bind(photo: PhotoModel) {
             photoProduct?.context?.let {
                 Glide.with(it).load(photo.imageUrl).into(photoProduct)
             }

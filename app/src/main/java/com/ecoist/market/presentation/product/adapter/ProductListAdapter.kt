@@ -12,18 +12,19 @@ import com.bumptech.glide.Glide
 
 import com.ecoist.market.R
 import com.ecoist.market.data.model.Product
+import com.ecoist.market.data.roomdb.ProductModel
 
 class ProductListAdapter(
     private var listener: Listener
-) : ListAdapter<Product, ProductListAdapter.ProductVH>(diff) {
+) : ListAdapter<ProductModel, ProductListAdapter.ProductVH>(diff) {
 
     companion object {
-        val diff = object : DiffUtil.ItemCallback<Product>() {
-            override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
+        val diff = object : DiffUtil.ItemCallback<ProductModel>() {
+            override fun areItemsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {
                 return oldItem.id == newItem.id && oldItem.idCategory == newItem.idCategory
             }
 
-            override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
+            override fun areContentsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {
                 return oldItem.name == newItem.name
             }
         }
@@ -45,17 +46,18 @@ class ProductListAdapter(
         private var tvProductTextView: TextView? = view.findViewById(R.id.priceItems)
         private val productImage: ImageView? = itemView.findViewById(R.id.product_image_view_Item)
 
-        fun bind(product: Product, listener: Listener) {
+        fun bind(product: ProductModel, listener: Listener) {
             tvProductName?.text = product.name
             tvProductTextView?.text = product.price
+
             productImage?.context?.let {
-                Glide.with(it).load(product.imageUrl).into(productImage)
+              Glide.with(it).load(product.imageUrl).into(productImage)
             }
             itemView.setOnClickListener { listener.onClick(product) }
         }
     }
 
     interface Listener {
-        fun onClick(product: Product)
+        fun onClick(product: ProductModel)
     }
 }

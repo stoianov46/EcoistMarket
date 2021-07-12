@@ -15,19 +15,21 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.ecoist.market.R
 import com.ecoist.market.data.model.Photo
 import com.ecoist.market.data.model.Product
+import com.ecoist.market.data.roomdb.PhotoModel
+import com.ecoist.market.data.roomdb.ProductModel
+import com.ecoist.market.data.roomdb.Resource
 import com.ecoist.market.databinding.FragmentProductBinding
 import org.koin.android.ext.android.inject
-
-
 class ProductFragment : Fragment() {
     private lateinit var bind: FragmentProductBinding
     private val args: ProductFragmentArgs by navArgs()
     private val viewModel: ProductViewModel by inject()
     private val productObserver = Observer(::handleProduct)
-    private val photoObserver = Observer<List<Photo>>(::handlePhoto)
+    private val photoObserver = Observer<Resource<List<PhotoModel>>>(::handlePhoto)
     private var recyclerView: RecyclerView? = null
     private var tvProductName: TextView? = null
     private var tvProductDescription: TextView? = null
@@ -40,26 +42,19 @@ class ProductFragment : Fragment() {
     private var tvProductTextFullX: TextView? = null
     private val listAdapter = PhotoListAdapter()
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        bind=DataBindingUtil.inflate(inflater, R.layout.fragment_product, container, false)
+        bind = DataBindingUtil.inflate(inflater, R.layout.fragment_product, container, false)
         return bind.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var str= args.product.id
-//        bind.button.setOnClickListener {
-//            val uri: Uri =
-//                Uri.parse("http://www.ecoist.com.ua/"+str) // missing 'http://' will cause crashed
-//
-//            val intent = Intent(Intent.ACTION_VIEW, uri)
-//            startActivity(intent)
-//        }
+        var str = args.product.id
+
         tvProductName = view.findViewById(R.id.tvProductName)
         tvProductDescriptionFull = view.findViewById(R.id.tvProductTextFull)
         tvProductDescription = view.findViewById(R.id.tvText)
@@ -73,24 +68,24 @@ class ProductFragment : Fragment() {
         recyclerView?.adapter = listAdapter
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        viewModel.productLiveData.observe(viewLifecycleOwner, productObserver)
-        viewModel.photoLiveData.observe(viewLifecycleOwner, photoObserver)
-        viewModel.loadPhoto(args.product.urlForImages)
-        viewModel.init(args.product.id)
+        viewModel.product(str).observe(viewLifecycleOwner, productObserver)
+        viewModel.photo(args.product.galleryName).observe(viewLifecycleOwner){
+            listAdapter.submitList(it.data)
+        }
     }
 
-    private fun handleProduct(product: Product?) {
+    private fun handleProduct(product: Resource<ProductModel>?) {
         if (product == null) return
-        tvProductName?.text = product.name
-        tvProductPrice?.text = product.price
-        tvProductDescriptionFull?.text = product.descriptionFull?.fromHtml()?.trim()
-        tvProductDescription?.text = product.description?.fromHtml()?.trim()
-        tvComment?.text = product.coment?.fromHtml()?.trim()
+        tvProductName?.text = product.data?.name
+        tvProductPrice?.text = product.data?.price
+        tvProductDescriptionFull?.text = product.data?.descriptionFull?.fromHtml()?.trim()
+        tvProductDescription?.text = product.data?.description?.fromHtml()?.trim()
+        tvComment?.text = product.data?.coment?.fromHtml()?.trim()
     }
 
-    private fun handlePhoto(ph: List<Photo>?) {
+    private fun handlePhoto(ph: Resource<List<PhotoModel>>?) {
         if (ph == null) return
-        listAdapter?.submitList(ph)
+        listAdapter.submitList(ph.data)
     }
 
     private fun String.fromHtml(): Spanned {

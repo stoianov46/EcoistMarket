@@ -9,7 +9,9 @@ fun productModule() = module {
     viewModel {
         ProductViewModel(
             application = androidApplication(),
-            repository = get()
+            repository = get(),
+            repos = get(),
+            reposik = get()
         )
     }
 }

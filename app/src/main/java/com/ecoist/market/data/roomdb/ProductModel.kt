@@ -33,5 +33,7 @@ data class ProductModel(
     @ColumnInfo(name = "isPublic") val isPublic: Int?,
     @ColumnInfo(name = "idImage") val idImage: Int?,
     @ColumnInfo(name = "deleted") val deleted: Int?,
-    @ColumnInfo(name = "description") val description: String?
+    @ColumnInfo(name = "description") val description: String?,
+    @ColumnInfo(name = "imageUrl")val imageUrl: String?,
+    @ColumnInfo(name = "urlForImages") val urlForImages:String?
 ):Parcelable

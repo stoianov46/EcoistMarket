@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
- *Created by Yehor Kudimov on 3/12/2021.
+ *Created by Yehor Kudimov on 3/05/2021.
  */
 @Entity(tableName = "photo")
 @Parcelize
@@ -17,5 +17,7 @@ data class PhotoModel(
     val name: String?,
     val gOrder: Int?,
     val height: Int?,
-    val width: Int?
+    val width: Int?,
+    val imageUrl: String?
+
 ) : Parcelable
