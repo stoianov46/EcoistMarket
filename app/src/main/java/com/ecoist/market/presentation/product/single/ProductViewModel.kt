@@ -12,6 +12,7 @@ import com.ecoist.market.data.roomdb.ProductModel
 import com.ecoist.market.data.roomdb.ProductRepositoryEco
 import com.ecoist.market.domain.repository.ProductRepository
 import com.ecoist.market.presentation.base.BaseViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -35,6 +36,7 @@ class ProductViewModel(
     private val photoEmitter = MutableLiveData<List<Photo>>()
 
     fun product(id: Long) = repos.getProductByIdFlowxSingle(id).asLiveData()
-    fun  photo(id: String?) = reposik.listPhoto(id).asLiveData()
+
+     fun  photo(id: String?) =reposik.listPhoto(id).asLiveData()
 
 }

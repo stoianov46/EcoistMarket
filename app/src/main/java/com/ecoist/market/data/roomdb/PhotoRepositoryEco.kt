@@ -5,6 +5,7 @@ import com.ecoist.market.data.mapper.ProductMapper
 import com.ecoist.market.domain.api.ApiService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -19,6 +20,7 @@ class PhotoRepositoryEco (    private val apiService: ApiService){
         return networkBoundResourceMay(
             query = { dao.flowPhoto(name) },
             fetch = {
+                delay(2000)
                 apiService.getPhotoList(name)
             },
             saveFetchResult = { item ->

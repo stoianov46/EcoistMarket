@@ -12,6 +12,7 @@ import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,8 @@ import com.ecoist.market.data.roomdb.PhotoModel
 import com.ecoist.market.data.roomdb.ProductModel
 import com.ecoist.market.data.roomdb.Resource
 import com.ecoist.market.databinding.FragmentProductBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 class ProductFragment : Fragment() {
     private lateinit var bind: FragmentProductBinding
@@ -54,7 +57,6 @@ class ProductFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var str = args.product.id
-
         tvProductName = view.findViewById(R.id.tvProductName)
         tvProductDescriptionFull = view.findViewById(R.id.tvProductTextFull)
         tvProductDescription = view.findViewById(R.id.tvText)
@@ -69,9 +71,12 @@ class ProductFragment : Fragment() {
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
         viewModel.product(str).observe(viewLifecycleOwner, productObserver)
-        viewModel.photo(args.product.galleryName).observe(viewLifecycleOwner){
-            listAdapter.submitList(it.data)
+
+            viewModel.photo(args.product.galleryName).observe(viewLifecycleOwner){
+                listAdapter.submitList(it.data)
+
         }
+
     }
 
     private fun handleProduct(product: Resource<ProductModel>?) {

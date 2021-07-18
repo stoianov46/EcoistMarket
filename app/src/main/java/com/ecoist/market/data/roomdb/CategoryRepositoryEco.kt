@@ -27,7 +27,6 @@ class CategoryRepositoryEco(
         return networkBoundResourceMay(
             query = { dao.getCategoryFlowX(parentId) },
             fetch = {
-                delay(2000)
                 apiService.getChildCategories(parentId)
             },
             saveFetchResult = { item ->
