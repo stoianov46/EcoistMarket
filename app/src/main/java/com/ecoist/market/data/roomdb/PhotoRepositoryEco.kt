@@ -7,11 +7,12 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 
 /**
  *Created by Yehor Kudimov on 3/05/2021.
  */
-class PhotoRepositoryEco (    private val apiService: ApiService){
+class PhotoRepositoryEco(private val apiService: ApiService) {
     val io: CoroutineDispatcher
         get() = Dispatchers.IO
 
@@ -20,12 +21,15 @@ class PhotoRepositoryEco (    private val apiService: ApiService){
         return networkBoundResourceMay(
             query = { dao.flowPhoto(name) },
             fetch = {
-                delay(2000)
                 apiService.getPhotoList(name)
             },
+
             saveFetchResult = { item ->
-                PhotoMapper.mapToPhotoModel(item).also { dao.insert(*it.toTypedArray()) }
+                withContext(io) {
+                    PhotoMapper.mapToPhotoModel(item).also { dao.insert(*it.toTypedArray()) }
+                }
             }
+
         )
     }
 
