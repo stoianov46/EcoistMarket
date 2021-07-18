@@ -23,13 +23,11 @@ class PhotoRepositoryEco(private val apiService: ApiService) {
             fetch = {
                 apiService.getPhotoList(name)
             },
-
             saveFetchResult = { item ->
                 withContext(io) {
                     PhotoMapper.mapToPhotoModel(item).also { dao.insert(*it.toTypedArray()) }
                 }
             }
-
         )
     }
 
