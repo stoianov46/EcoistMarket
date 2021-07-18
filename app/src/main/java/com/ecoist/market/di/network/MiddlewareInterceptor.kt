@@ -5,9 +5,7 @@ import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 import java.io.IOException
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
+
 class MiddlewareInterceptor : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

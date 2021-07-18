@@ -10,9 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import java.io.IOException
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
+
 class AppGsonResponseBodyConverter<T>(
     private val gson: Gson,
     private val typeAdapter: TypeAdapter<T>

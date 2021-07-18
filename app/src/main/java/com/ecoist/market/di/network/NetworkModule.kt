@@ -2,7 +2,7 @@ package com.ecoist.market.di.network
 
 import android.content.Context
 import com.ecoist.market.BuildConfig
-import com.ecoist.market.domain.ApiService
+import com.ecoist.market.domain.api.ApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -13,9 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.util.concurrent.TimeUnit
 
-/**
- * Created by Kirill Stoianov on 18/09/2020.
- */
+
 fun networkModule() = module {
 
     single {
