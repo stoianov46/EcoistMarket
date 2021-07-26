@@ -1,6 +1,9 @@
 package com.ecoist.market.data.roomdb
 
+import android.os.BaseBundle
 import android.os.Parcelable
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -35,5 +38,13 @@ data class ProductModel(
     @ColumnInfo(name = "deleted") val deleted: Int?,
     @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "imageUrl")val imageUrl: String?,
-    @ColumnInfo(name = "urlForImages") val urlForImages:String?
-):Parcelable
+    @ColumnInfo(name = "urlForImages") val urlForImages:String?,
+    @get:Bindable
+    var favorites: Boolean = false,
+    var bucket: Boolean = false
+):Parcelable,BaseObservable(){
+    fun updateLike(){
+        favorites=!favorites
+        notifyChange()
+    }
+}

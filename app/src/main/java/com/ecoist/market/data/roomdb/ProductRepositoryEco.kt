@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 
 /**
  *Created by Yehor Kudimov on 3/12/2021.
@@ -13,6 +14,8 @@ import kotlinx.coroutines.flow.Flow
 class ProductRepositoryEco(private val apiService: ApiService) {
     val io: CoroutineDispatcher
         get() = Dispatchers.IO
+    val main: CoroutineDispatcher
+        get() = Dispatchers.Main
 
     private val dao = EcoDataBase.instance!!.getProductDao()
 
@@ -39,16 +42,8 @@ class ProductRepositoryEco(private val apiService: ApiService) {
         )
     }
 
-/*
-    suspend fun getProductById(id: Long): ProductModel {
-        val productResponse = apiService.getProductById(id)
-        return ProductMapper.mapSingleModel(productResponse)
+    suspend fun saveModel(model: ProductModel) = withContext(io) {
+        dao.update(model)
     }
-
-    suspend fun getProductsByIdOfCategory(id: Long): List<ProductModel> {
-        val products = apiService.getProductByIdOfCategory(id)
-        return ProductMapper.mapRoom(products)
-    }
-*/
 
 }

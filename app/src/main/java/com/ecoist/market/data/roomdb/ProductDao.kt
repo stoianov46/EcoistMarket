@@ -18,6 +18,9 @@ interface ProductDao {
     @Query("SELECT * FROM productEco WHERE id = :id")
     fun findByIdFlowxOne(id: Long): Flow<ProductModel>
 
+    @Query("SELECT * FROM productEco WHERE id = :id")
+    fun findById(id: Long): ProductModel
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(vararg productEco: ProductModel)

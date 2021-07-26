@@ -1,7 +1,5 @@
 package com.ecoist.market.presentation.product.single
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.Spanned
 import android.view.LayoutInflater
@@ -12,20 +10,15 @@ import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.ecoist.market.R
-import com.ecoist.market.data.model.Photo
-import com.ecoist.market.data.model.Product
 import com.ecoist.market.data.roomdb.PhotoModel
 import com.ecoist.market.data.roomdb.ProductModel
 import com.ecoist.market.data.roomdb.Resource
 import com.ecoist.market.databinding.FragmentProductBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.ecoist.market.presentation.product.adapter.PhotoListAdapter
 import org.koin.android.ext.android.inject
 class ProductFragment : Fragment() {
     private lateinit var bind: FragmentProductBinding

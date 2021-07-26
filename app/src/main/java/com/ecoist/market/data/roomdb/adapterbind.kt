@@ -1,0 +1,19 @@
+package com.ecoist.market.data.roomdb
+
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.ecoist.market.R
+
+/**
+ *Created by Yehor Kudimov on 7/21/2021.
+ */
+
+@BindingAdapter(value = ["setLike"])
+fun ImageView.setLike(isLove: Boolean) {
+    if (isLove) {
+        Glide.with(context).load(R.drawable.like).into(this)
+    } else {
+        Glide.with(context).load(R.drawable.unlike).into(this)
+    }
+}

@@ -11,12 +11,11 @@ import kotlinx.coroutines.flow.Flow
  */
 class CategoryRepositoryEco(
     private val apiService: ApiService
-) : NetworkBoundResource<List<CategoryModel>, List<CategoryResponse>>() {
+) {
     companion object {
         private const val TOP_LEVEL_CATEGORY_PARENT_ID: Long = 1
     }
     val dao = EcoDataBase.instance!!.getCategoryDao()
-
 
     suspend fun getChildCategoriesOfRoom(parentId: Long): List<CategoryModel> {
         val childCategories = apiService.getChildCategories(parentId)
@@ -37,28 +36,6 @@ class CategoryRepositoryEco(
 
     val io: CoroutineDispatcher
         get() = Dispatchers.IO
-
-    override fun processResponse(response: List<CategoryResponse>): List<CategoryModel> {
-        return CategoryMapper.mapModel(response)
-    }
-
-    override suspend fun saveCallResults(items: List<CategoryModel>) {
-        dao.delete()
-        dao.insert(*items.toTypedArray())
-    }
-
-    override fun shouldFetch(data: List<CategoryModel>?): Boolean {
-        return true
-       // CategoryMapper.mapModel(item).also { dao.insert(*it.toTypedArray()) }
-    }
-
-    override suspend fun loadFromDb(): List<CategoryModel> {
-        return dao.getCategory()
-    }
-
-    override fun createCallAsync(): Deferred<List<CategoryResponse>> {
-        return apiService.getAllCategoriesDeffAsync()
-    }
 
 }
 

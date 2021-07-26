@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,8 +17,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ecoist.market.R
 import com.ecoist.market.data.model.Product
 import com.ecoist.market.data.roomdb.ProductModel
+import com.ecoist.market.data.roomdb.ProductRepositoryEco
 import com.ecoist.market.data.roomdb.Resource
+import com.ecoist.market.domain.repository.ProductRepository
 import com.ecoist.market.presentation.product.adapter.ProductListAdapter
+import com.ecoist.market.util.oneTimeCoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class ProductListFragment : Fragment(), ProductListAdapter.Listener {
@@ -26,7 +33,7 @@ class ProductListFragment : Fragment(), ProductListAdapter.Listener {
     private val productListObserver = Observer<Resource<List<ProductModel>>>(::handleProductList)
     private var recyclerView: RecyclerView? = null
     private val adapter =
-        ProductListAdapter(this)
+        ProductListAdapter(this,viewModel)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +57,13 @@ class ProductListFragment : Fragment(), ProductListAdapter.Listener {
             ProductListFragmentDirections.actionProductListFragmentToProductFragment(product)
         findNavController().navigate(action)
     }
+
+    override fun onLike(product: ProductModel) {
+        oneTimeCoroutineScope(Dispatchers.IO).launch {
+            viewModel.checkFav(product)
+        }
+    }
+
 
     private fun handleProductList(productList: Resource<List<ProductModel>>?) {
         if (productList == null) return
