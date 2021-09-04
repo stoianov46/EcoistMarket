@@ -37,8 +37,11 @@ class MainActivity : AppCompatActivity() {
             } else {
                 bottom.visibility = View.VISIBLE
             }
+
         }
         bottom.setupWithNavController(van)
+
+
     }
 }
 

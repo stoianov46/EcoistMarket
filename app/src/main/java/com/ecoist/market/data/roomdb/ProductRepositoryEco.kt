@@ -41,9 +41,11 @@ class ProductRepositoryEco(private val apiService: ApiService) {
             }
         )
     }
+    fun getProductsFlow():Flow<List<ProductModel>>{
+        return dao.findAllFlow()
+    }
 
     suspend fun saveModel(model: ProductModel) = withContext(io) {
         dao.update(model)
     }
-
 }

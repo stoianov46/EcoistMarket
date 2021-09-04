@@ -41,10 +41,15 @@ data class ProductModel(
     @ColumnInfo(name = "urlForImages") val urlForImages:String?,
     @get:Bindable
     var favorites: Boolean = false,
+    @get:Bindable
     var bucket: Boolean = false
 ):Parcelable,BaseObservable(){
     fun updateLike(){
         favorites=!favorites
+        notifyChange()
+    }
+    fun updateBucket(){
+        bucket=!bucket
         notifyChange()
     }
 }

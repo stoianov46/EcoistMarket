@@ -80,6 +80,18 @@
             android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+        <ImageView
+            android:id="@+id/addBucket"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:onClick="@{()->viewModel.buyEcoTovar(model)}"
+            android:layout_marginEnd="15dp"
+            app:setBucket="@{model.bucket}"
+            android:background="@drawable/addbucket"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/likoc" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

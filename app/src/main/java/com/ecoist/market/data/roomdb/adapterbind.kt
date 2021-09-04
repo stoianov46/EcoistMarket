@@ -17,3 +17,12 @@ fun ImageView.setLike(isLove: Boolean) {
         Glide.with(context).load(R.drawable.unlike).into(this)
     }
 }
+
+@BindingAdapter(value = ["setBucket"])
+fun ImageView.setBucket(isLove: Boolean) {
+    if (!isLove) {
+        Glide.with(context).load(R.drawable.ic_baseline_add_shopping_cart_24).into(this)
+    } else {
+        Glide.with(context).load(R.drawable.ic_baseline_remove_shopping_cart_24).into(this)
+    }
+}

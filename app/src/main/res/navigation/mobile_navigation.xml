@@ -68,12 +68,37 @@
     </fragment>
     <fragment
         android:id="@+id/bucketFragment"
-        android:name="com.ecoist.market.presentation.shoppingcart.BucketFragment"
+        android:name="com.ecoist.market.presentation.product.Bucket"
         android:label="fragment_bucket"
-        tools:layout="@layout/fragment_bucket" />
+        tools:layout="@layout/fragment_bucket" >
+        <action
+            android:id="@+id/action_bucketFragment_to_productFragment"
+            app:destination="@id/productFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/bucketFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="product"
+            app:argType="com.ecoist.market.data.roomdb.ProductModel" />
+    </fragment>
     <fragment
         android:id="@+id/contactsFramgent"
         android:name="com.ecoist.market.ContactsFramgent"
         android:label="fragment_contacts_framgent"
         tools:layout="@layout/fragment_contacts_framgent" />
+    <fragment
+        android:id="@+id/favorites2"
+        android:name="com.ecoist.market.presentation.product.Favorites"
+        tools:layout="@layout/favorites_fragment"
+        android:label="Favorites" >
+        <argument
+            android:name="product"
+            app:argType="com.ecoist.market.data.roomdb.ProductModel" />
+        <action
+            android:id="@+id/action_favorites2_to_productFragment"
+            app:destination="@id/productFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/favorites2"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
