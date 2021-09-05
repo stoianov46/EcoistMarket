@@ -3,27 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="model"
+            type="com.ecoist.market.data.roomdb.ProductModel" />
+
+        <variable
+            name="viewModel"
+            type="com.ecoist.market.presentation.product.single.ProductViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nested_scroll"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-          >
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-              >
+                android:layout_marginEnd="5dp">
 
                 <LinearLayout
                     android:id="@+id/liner"
@@ -47,6 +56,28 @@
                         tools:listitem="@layout/photo_item" />
                 </LinearLayout>
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/nabBuy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    app:setBucket="@{model.bucket}"
+                    android:src="@drawable/addbucket"
+                    app:fabSize="mini"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/liner" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/nablike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    android:src="@drawable/like"
+                    app:fabSize="mini"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/nabBuy"
+                    app:layout_constraintTop_toBottomOf="@id/liner"
+                    app:setLikeFLOAT="@{model.favorites}" />
 
                 <TextView
                     android:id="@+id/tvProductName"
@@ -57,7 +88,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/liner" />
+                    app:layout_constraintTop_toBottomOf="@+id/nabBuy" />
 
                 <TextView
                     android:id="@+id/priceName"

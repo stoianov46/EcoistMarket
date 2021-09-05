@@ -19,7 +19,9 @@ import com.ecoist.market.data.roomdb.ProductModel
 import com.ecoist.market.data.roomdb.Resource
 import com.ecoist.market.databinding.FragmentProductBinding
 import com.ecoist.market.presentation.product.adapter.PhotoListAdapter
+import com.ecoist.market.presentation.product.list.ProductListViewModel
 import org.koin.android.ext.android.inject
+
 class ProductFragment : Fragment() {
     private lateinit var bind: FragmentProductBinding
     private val args: ProductFragmentArgs by navArgs()
@@ -50,6 +52,14 @@ class ProductFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var str = args.product.id
+        bind.model = args.product
+        bind.executePendingBindings()
+        bind.nabBuy.setOnClickListener {
+            viewModel.buyEcoTovar(args.product)
+        }
+        bind.nablike.setOnClickListener {
+            viewModel.checkFav(args.product)
+        }
         tvProductName = view.findViewById(R.id.tvProductName)
         tvProductDescriptionFull = view.findViewById(R.id.tvProductTextFull)
         tvProductDescription = view.findViewById(R.id.tvText)
@@ -64,9 +74,11 @@ class ProductFragment : Fragment() {
         recyclerView?.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
         viewModel.product(str).observe(viewLifecycleOwner, productObserver)
+        viewModel.photo(args.product.galleryName).observe(viewLifecycleOwner) {
+            listAdapter.submitList(it.data)
 
-            viewModel.photo(args.product.galleryName).observe(viewLifecycleOwner){
-                listAdapter.submitList(it.data)
+        }
+        bind.nabBuy.setOnClickListener {
 
         }
 

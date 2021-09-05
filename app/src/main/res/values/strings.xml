@@ -29,10 +29,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="contacts">Контакти</string>
     <string name="ecoist">ecoist</string>
-    <string name="bucket">Bucket</string>
+    <string name="bucket">Корзина</string>
     <string name="_380688123748">+380688123748 Anton</string>
     <string name="http_ecoist_com_ua">http://ecoist.com.ua</string>
     <string name="ecoist_com">Эко магазин ecoist.com.ua В интернет магазине Экоист Вы можете купить ветрогенераторы, солнечные батареи, электромобили, электровелосипеды, энергосберегающие дома, тепловые насосы, солнечные коллекторы, аккумуляторные батареи, стабилизаторы, инверторы, солнечные зарядные и другие эко товары.</string>
     <string name="tg_ecoistukraine">TG:@ecoistukraine</string>
     <string name="ecoistll">Ecoist</string>
+    <string name="buyall">Купить товары</string>
 </resources>

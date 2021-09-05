@@ -38,5 +38,16 @@ class ProductViewModel(
     fun product(id: Long) = repos.getProductByIdFlowxSingle(id).asLiveData()
 
      fun  photo(id: String?) =reposik.listPhoto(id).asLiveData()
-
+    fun checkFav(mod: ProductModel) {
+        mod.updateLike()
+        viewModelScope.launch {
+            repos.saveModel(mod)
+        }
+    }
+    fun buyEcoTovar(mod: ProductModel) {
+        mod.updateBucket()
+        viewModelScope.launch {
+            repos.saveModel(mod)
+        }
+    }
 }
