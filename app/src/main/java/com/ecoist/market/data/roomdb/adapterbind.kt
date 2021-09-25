@@ -12,9 +12,9 @@ import com.ecoist.market.R
 @BindingAdapter(value = ["setLike"])
 fun ImageView.setLike(isLove: Boolean) {
     if (isLove) {
-        Glide.with(context).load(R.drawable.like).into(this)
+        Glide.with(context).load(R.drawable.favorlike).into(this)
     } else {
-        Glide.with(context).load(R.drawable.unlike).into(this)
+        Glide.with(context).load(R.drawable.favornewno).into(this)
     }
 }
 

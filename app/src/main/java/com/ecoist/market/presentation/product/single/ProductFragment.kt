@@ -78,10 +78,6 @@ class ProductFragment : Fragment() {
             listAdapter.submitList(it.data)
 
         }
-        bind.nabBuy.setOnClickListener {
-
-        }
-
     }
 
     private fun handleProduct(product: Resource<ProductModel>?) {
